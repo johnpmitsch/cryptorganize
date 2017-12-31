@@ -1,6 +1,6 @@
 import React from 'react';
-import CryptoList from './components/CryptoList';
-import { StyleSheet, Text, View } from 'react-native';
+import CryptoList from './src/components/CryptoList';
+import { Text, View } from 'react-native';
 import { Header } from 'react-native-elements';
 
 export default class App extends React.Component {
@@ -8,9 +8,10 @@ export default class App extends React.Component {
     return (
 				<View>
           <Header
-            leftComponent={{ icon: 'menu', color: '#fff' }}
+            leftComponent={{}}
             centerComponent={{ text: 'Cryptorganize', style: { color: '#fff' } }}
-            rightComponent={{ icon: 'home', color: '#fff' }}
+            rightComponent={{}}
+            backgroundColor="#312c32"
           />
           <CryptoList />
 				</View>
