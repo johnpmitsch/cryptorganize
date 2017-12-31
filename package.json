@@ -25,7 +25,8 @@
     "format": "find -name '*.js' -not -path './node_modules/*' | xargs prettier --write"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "setupFiles": ["./test/helpers/testSetup"]
   },
   "dependencies": {
     "auth0-js": ">= 8.12.0",
