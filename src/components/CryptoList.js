@@ -2,23 +2,73 @@ import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { View, ScrollView } from "react-native";
 import { Text, List, ListItem, Button, SearchBar } from "react-native-elements";
+import { filter } from 'lodash';
 import CryptoData from "../helpers/CryptoData";
 import styles from "../styles/styles";
-import TopBar from "./TopBar";
 
 class CryptoList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fullList: CryptoData,
+			visibleList: CryptoData,
+      searchText: ""
+    };
+    this.setSearchText = this.setSearchText.bind(this);
+    this.filterKeys = this.filterKeys.bind(this);
+    this.clearSearchText = this.clearSearchText.bind(this);
+  }
+
+  clearSearchText() {
+    this.setState({
+      searchText: ""
+    });
+  }
+
+  setSearchText(query) {
+    let searchText = query;
+		let data = this.state.fullList;	
+		let filteredData = this.filterKeys(searchText, data);
+		this.setState({
+			visibleList: filteredData,
+			rawData: data,
+		});
+  }
+
+	filterKeys(searchText, keys) {
+    let text = searchText.toLowerCase();
+    return filter(keys, (n) => {
+      let key = n.title.toLowerCase();
+      return key.search(text) !== -1;
+    });
+  }
+
   render() {
     return (
       <View>
-        <View style={styles.titleContainer}>
-          <Text h3 style={styles.centerText}>
-            My Public Keys
-          </Text>
-        </View>
         <ScrollView>
-          <TopBar />
+          <View style={styles.aboveListContainer}>
+            <View style={styles.buttonContainer}>
+              <Button
+                title="Add Key"
+                borderRadius={5}
+                icon={{ name: "plus", type: "font-awesome" }}
+                backgroundColor="#3498db"
+              />
+            </View>
+            <View style={styles.buttonContainer}>
+              <SearchBar
+                lightTheme
+                round
+                clearIcon
+                containerStyle={styles.searchBar}
+                onChangeText={this.setSearchText}
+                onClearText={this.clearSearchText}
+              />
+            </View>
+          </View>
           <List>
-            {CryptoData.map((item, i) => (
+            {this.state.visibleList.map((item, i) => (
               <ListItem key={i} leftIcon={item.icon} title={item.title} />
             ))}
           </List>

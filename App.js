@@ -1,7 +1,8 @@
 import React from "react";
 import CryptoList from "./src/components/CryptoList";
-import { Text, View } from "react-native";
-import { Header } from "react-native-elements";
+import { View } from "react-native";
+import { Header, Text } from "react-native-elements";
+import styles from "./src/styles/styles";
 
 export default class App extends React.Component {
   render() {
@@ -13,6 +14,11 @@ export default class App extends React.Component {
           rightComponent={{}}
           backgroundColor="#312c32"
         />
+        <View style={styles.titleContainer}>
+          <Text h3 style={styles.centerText}>
+            Public Keys
+          </Text>
+        </View>
         <CryptoList />
       </View>
     );
