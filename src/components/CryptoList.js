@@ -5,6 +5,7 @@ import { Text, List, ListItem, Button, SearchBar } from "react-native-elements";
 import { filter } from "lodash";
 import CryptoData from "../helpers/CryptoData";
 import styles from "../styles/styles";
+import globalVars from "../helpers/globalVars";
 
 class CryptoList extends React.Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class CryptoList extends React.Component {
                 title="Add Key"
                 borderRadius={5}
                 icon={{ name: "plus", type: "font-awesome" }}
-                backgroundColor="#3498db"
+                backgroundColor={globalVars.buttonColor}
               />
             </View>
             <View style={styles.buttonContainer}>

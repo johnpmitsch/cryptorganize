@@ -1,12 +1,18 @@
 import { StyleSheet } from "react-native";
 
+const backgroundColor = "white";
+
 const styles = StyleSheet.create({
+  publicKeyButton: {
+    marginBottom: 10
+  },
+
   mainHeader: {
     backgroundColor: "#3B3738"
   },
 
   homeContainer: {
-    backgroundColor: "white",
+    backgroundColor: backgroundColor,
     flex: 1
   },
 
@@ -19,6 +25,8 @@ const styles = StyleSheet.create({
   },
 
   publicKeyContainer: {
+    flex: 1,
+    backgroundColor: backgroundColor,
     alignItems: "center",
     justifyContent: "center",
     padding: 5
@@ -29,7 +37,7 @@ const styles = StyleSheet.create({
   },
 
   searchBar: {
-    backgroundColor: "white",
+    backgroundColor: backgroundColor,
     borderTopWidth: 0,
     borderBottomWidth: 0
   },
