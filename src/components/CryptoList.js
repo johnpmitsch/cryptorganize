@@ -2,7 +2,7 @@ import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { View, ScrollView } from "react-native";
 import { Text, List, ListItem, Button, SearchBar } from "react-native-elements";
-import { filter } from 'lodash';
+import { filter } from "lodash";
 import CryptoData from "../helpers/CryptoData";
 import styles from "../styles/styles";
 
@@ -11,7 +11,7 @@ class CryptoList extends React.Component {
     super(props);
     this.state = {
       fullList: CryptoData,
-			visibleList: CryptoData,
+      visibleList: CryptoData,
       searchText: ""
     };
     this.setSearchText = this.setSearchText.bind(this);
@@ -27,19 +27,19 @@ class CryptoList extends React.Component {
 
   setSearchText(query) {
     let searchText = query;
-		let data = this.state.fullList;	
-		let filteredData = this.filterKeys(searchText, data);
-		this.setState({
-			visibleList: filteredData,
-			rawData: data,
-		});
+    let data = this.state.fullList;
+    let filteredData = this.filterKeys(searchText, data);
+    this.setState({
+      visibleList: filteredData,
+      rawData: data
+    });
   }
 
-	filterKeys(searchText, keys) {
+  filterKeys(searchText, keys) {
     let text = searchText.toLowerCase();
-    return filter(keys, (n) => {
+    return filter(keys, n => {
       let key = n.title.toLowerCase();
-      return key.search(text) !== -1;
+      return key.indexOf(text) !== -1;
     });
   }
 
@@ -69,7 +69,17 @@ class CryptoList extends React.Component {
           </View>
           <List>
             {this.state.visibleList.map((item, i) => (
-              <ListItem key={i} leftIcon={item.icon} title={item.title} />
+              <ListItem
+                key={i}
+                leftIcon={item.icon}
+                title={item.title}
+                onPress={() =>
+                  this.props.navigation.navigate("PublicKey", {
+                    title: item.title,
+                    key: item.key
+                  })
+                }
+              />
             ))}
           </List>
         </ScrollView>

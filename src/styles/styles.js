@@ -18,6 +18,12 @@ const styles = StyleSheet.create({
     padding: 5
   },
 
+  publicKeyContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 5
+  },
+
   buttonContainer: {
     flex: 1
   },

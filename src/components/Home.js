@@ -6,11 +6,11 @@ import styles from "../styles/styles";
 import globalVars from "../helpers/globalVars";
 
 export default class Home extends React.Component {
-	static navigationOptions = {
+  static navigationOptions = {
     title: "Cryptorganize",
     headerStyle: styles.mainHeader,
     headerTintColor: globalVars.headerTintColor
-	}
+  };
 
   render() {
     return (
@@ -20,7 +20,7 @@ export default class Home extends React.Component {
             Public Keys
           </Text>
         </View>
-        <CryptoList />
+        <CryptoList navigation={this.props.navigation} />
       </View>
     );
   }

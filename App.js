@@ -1,11 +1,11 @@
 import React from "react";
 import Home from "./src/components/Home";
 import PublicKey from "./src/components/PublicKey";
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator } from "react-navigation";
 
 const App = StackNavigator({
-    Main: {screen: Home},
-    PublicKey: {screen: PublicKey },
+  Main: { screen: Home },
+  PublicKey: { screen: PublicKey }
 });
 
-export default App 
+export default App;
