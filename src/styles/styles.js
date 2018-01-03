@@ -1,6 +1,15 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  mainHeader: {
+    backgroundColor: "#3B3738"
+  },
+
+  homeContainer: {
+    backgroundColor: "white",
+    flex: 1
+  },
+
   aboveListContainer: {
     flex: 1,
     flexDirection: "row",

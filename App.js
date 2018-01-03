@@ -1,26 +1,11 @@
 import React from "react";
-import CryptoList from "./src/components/CryptoList";
-import { View } from "react-native";
-import { Header, Text } from "react-native-elements";
-import styles from "./src/styles/styles";
+import Home from "./src/components/Home";
+import PublicKey from "./src/components/PublicKey";
+import { StackNavigator } from 'react-navigation';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View>
-        <Header
-          leftComponent={{}}
-          centerComponent={{ text: "Cryptorganize", style: { color: "#fff" } }}
-          rightComponent={{}}
-          backgroundColor="#312c32"
-        />
-        <View style={styles.titleContainer}>
-          <Text h3 style={styles.centerText}>
-            Public Keys
-          </Text>
-        </View>
-        <CryptoList />
-      </View>
-    );
-  }
-}
+const App = StackNavigator({
+    Main: {screen: Home},
+    PublicKey: {screen: PublicKey },
+});
+
+export default App 
