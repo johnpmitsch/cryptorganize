@@ -77,7 +77,8 @@ class CryptoList extends React.Component {
                 onPress={() =>
                   this.props.navigation.navigate("PublicKey", {
                     title: item.title,
-                    key: item.key
+                    key: item.key,
+                    currency: item.currency
                   })
                 }
               />

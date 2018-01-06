@@ -3,8 +3,13 @@ import { StyleSheet } from "react-native";
 const backgroundColor = "white";
 
 const styles = StyleSheet.create({
+  exploreButton: {
+    marginTop: 50
+  },
+
   publicKeyButton: {
-    marginBottom: 10
+    marginTop: 50,
+    marginBottom: 50
   },
 
   mainHeader: {
@@ -25,7 +30,6 @@ const styles = StyleSheet.create({
   },
 
   publicKeyContainer: {
-    flex: 1,
     backgroundColor: backgroundColor,
     alignItems: "center",
     justifyContent: "center",

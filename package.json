@@ -37,6 +37,7 @@
     "react": "16.0.0",
     "react-native": "0.50.3",
     "react-native-elements": "^0.18.5",
+    "react-native-message-bar": "^2.0.7",
     "react-native-qrcode-svg": "^5.0.5",
     "react-navigation": "^1.0.0-beta.22"
   }
