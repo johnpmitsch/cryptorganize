@@ -9,7 +9,8 @@ export default class Home extends React.Component {
   static navigationOptions = {
     title: "Cryptorganize",
     headerStyle: styles.mainHeader,
-    headerTintColor: globalVars.headerTintColor
+    headerTintColor: globalVars.headerTintColor,
+    headerTitleStyle: styles.headerTitle
   };
 
   render() {

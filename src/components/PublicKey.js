@@ -42,11 +42,11 @@ class PublicKey extends React.Component {
     const { params } = this.props.navigation.state;
     return (
       <View style={styles.publicKeyContainer}>
-          <Image
-            style={styles.backgroundIcon}
-            resizeMode="cover"
-            source={cryptoIcons[params.currency]}
-          />
+        <Image
+          style={styles.backgroundIcon}
+          resizeMode="cover"
+          source={cryptoIcons[params.currency]}
+        />
         <Button
           raised
           containerViewStyle={styles.publicKeyButton}

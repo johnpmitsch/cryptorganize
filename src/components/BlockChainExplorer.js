@@ -16,6 +16,8 @@ class BlockChainExplorer extends React.Component {
         return `https://etherscan.io/address/${publicKey}`;
       case "bitcoin_cash":
         return `https://www.blocktrail.com/BCC/address/${publicKey}`;
+      case "dogecoin":
+        return `https://dogechain.info/address/${publicKey}`;
       default:
         return null;
     }

@@ -3,14 +3,14 @@ import { StyleSheet } from "react-native";
 const backgroundColor = "white";
 
 const styles = StyleSheet.create({
-	backgroundIcon: {
-		flex: 1,
-		position: 'absolute',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-		opacity: 0.2,
-	},
+  backgroundIcon: {
+    flex: 1,
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    opacity: 0.2
+  },
 
   cryptoIcon: {
     width: 25,
@@ -30,6 +30,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#3B3738"
   },
 
+  headerTitle: {
+    fontSize: 20
+  },
+
   homeContainer: {
     backgroundColor: backgroundColor,
     flex: 1
@@ -44,10 +48,10 @@ const styles = StyleSheet.create({
   },
 
   publicKeyContainer: {
-		flex: 1,
+    flex: 1,
     backgroundColor: backgroundColor,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
 
   buttonContainer: {
