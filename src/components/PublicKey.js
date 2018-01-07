@@ -1,10 +1,11 @@
 import React from "react";
-import { Clipboard, View } from "react-native";
+import { Image, Clipboard, View } from "react-native";
 import { Button, Text, ListItem } from "react-native-elements";
 import styles from "../styles/styles";
 import QRCode from "react-native-qrcode-svg";
-import globalVars from "../helpers/globalVars";
+import globalVars from "../lib/globalVars";
 import BlockChainExplorer from "./BlockChainExplorer";
+import cryptoIcons from "../lib/cryptoIcons";
 
 const MessageBarManager = require("react-native-message-bar").MessageBarManager;
 const MessageBarAlert = require("react-native-message-bar").MessageBar;
@@ -41,6 +42,11 @@ class PublicKey extends React.Component {
     const { params } = this.props.navigation.state;
     return (
       <View style={styles.publicKeyContainer}>
+          <Image
+            style={styles.backgroundIcon}
+            resizeMode="cover"
+            source={cryptoIcons[params.currency]}
+          />
         <Button
           raised
           containerViewStyle={styles.publicKeyButton}

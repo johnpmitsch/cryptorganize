@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { Button, Text, ListItem } from "react-native-elements";
 import { Linking } from "react-native";
-import globalVars from "../helpers/globalVars";
+import globalVars from "../lib/globalVars";
 import styles from "../styles/styles";
 
 class BlockChainExplorer extends React.Component {
@@ -14,6 +14,8 @@ class BlockChainExplorer extends React.Component {
         return `https://live.blockcypher.com/ltc/address/${publicKey}`;
       case "ethereum":
         return `https://etherscan.io/address/${publicKey}`;
+      case "bitcoin_cash":
+        return `https://www.blocktrail.com/BCC/address/${publicKey}`;
       default:
         return null;
     }

@@ -1,11 +1,12 @@
 import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, Image } from "react-native";
 import { Text, List, ListItem, Button, SearchBar } from "react-native-elements";
 import { filter } from "lodash";
-import CryptoData from "../helpers/CryptoData";
+import CryptoData from "../lib/CryptoData";
+import globalVars from "../lib/globalVars";
+import cryptoIcons from "../lib/cryptoIcons";
 import styles from "../styles/styles";
-import globalVars from "../helpers/globalVars";
 
 class CryptoList extends React.Component {
   constructor(props) {
@@ -72,8 +73,14 @@ class CryptoList extends React.Component {
             {this.state.visibleList.map((item, i) => (
               <ListItem
                 key={i}
-                leftIcon={item.icon}
                 title={item.title}
+                leftIcon={
+                  <Image
+                    style={styles.cryptoIcon}
+                    source={cryptoIcons[item.currency]}
+                    resizeMode="contain"
+                  />
+                }
                 onPress={() =>
                   this.props.navigation.navigate("PublicKey", {
                     title: item.title,
