@@ -20,14 +20,14 @@ const crypto_data = [
     currency: "bitcoin_cash"
   },
   {
-    title: "Much Wow",
+    title: "Such Wow",
     key: "DFhECeqi4J7wHJyS76rePMabyQU3m5ZQ1o",
     currency: "dogecoin"
   },
   {
-    title: "Satoshi's Bitcoin",
-    key: "19C6TRProotyxfSnMjCU6RxQ7khF1k94B1",
-    currency: "bitcoin"
+    title: "Sonic's Dash",
+    key: "XvhExSNNr97U1ZenWFjJmgD8wc7v88ZUF7",
+    currency: "dash"
   },
   {
     title: "Satoshi's Bitcoin",

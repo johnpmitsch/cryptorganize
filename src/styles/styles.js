@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
 
-  homeContainer: {
+  basicContainer: {
     backgroundColor: backgroundColor,
     flex: 1
   },
@@ -68,8 +68,19 @@ const styles = StyleSheet.create({
     padding: 5
   },
 
-  centerText: {
-    textAlign: "center"
+  currencyButtonContainer: {
+    marginTop: 20,
+    marginBottom: 20
+  },
+
+  currencyButtonText: {
+    backgroundColor: backgroundColor,
+    color: "grey"
+  },
+
+  homeTitle: {
+    textAlign: "center",
+    fontSize: 20
   }
 });
 

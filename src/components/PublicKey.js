@@ -3,7 +3,7 @@ import { Image, Clipboard, View } from "react-native";
 import { Button, Text, ListItem } from "react-native-elements";
 import styles from "../styles/styles";
 import QRCode from "react-native-qrcode-svg";
-import globalVars from "../lib/globalVars";
+import globalHelpers from "../lib/globalHelpers";
 import BlockChainExplorer from "./BlockChainExplorer";
 import cryptoIcons from "../lib/cryptoIcons";
 
@@ -35,7 +35,7 @@ class PublicKey extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.title,
     headerStyle: styles.mainHeader,
-    headerTintColor: globalVars.headerTintColor
+    headerTintColor: globalHelpers.headerTintColor
   });
 
   render() {
@@ -50,7 +50,7 @@ class PublicKey extends React.Component {
         <Button
           raised
           containerViewStyle={styles.publicKeyButton}
-          backgroundColor={globalVars.buttonColor}
+          backgroundColor={globalHelpers.buttonColor}
           borderRadius={5}
           fontSize={12}
           icon={{ name: "clipboard", type: "font-awesome" }}

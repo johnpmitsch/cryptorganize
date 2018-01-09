@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { Button, Text, ListItem } from "react-native-elements";
 import { Linking } from "react-native";
-import globalVars from "../lib/globalVars";
+import globalHelpers from "../lib/globalHelpers";
 import styles from "../styles/styles";
 
 class BlockChainExplorer extends React.Component {
@@ -18,6 +18,8 @@ class BlockChainExplorer extends React.Component {
         return `https://www.blocktrail.com/BCC/address/${publicKey}`;
       case "dogecoin":
         return `https://dogechain.info/address/${publicKey}`;
+      case "dash":
+        return `https://live.blockcypher.com/dash/address/${publicKey}`;
       default:
         return null;
     }
@@ -27,7 +29,7 @@ class BlockChainExplorer extends React.Component {
     return (
       <View>
         <Button
-          backgroundColor={globalVars.buttonColor}
+          backgroundColor={globalHelpers.buttonColor}
           borderRadius={5}
           fontSize={16}
           containerViewStyle={styles.exploreButton}
@@ -38,7 +40,7 @@ class BlockChainExplorer extends React.Component {
               this.explorerUrl(this.props.currency, this.props.publicKey)
             )
           }
-          backgroundColor={globalVars.buttonColor}
+          backgroundColor={globalHelpers.buttonColor}
         />
       </View>
     );

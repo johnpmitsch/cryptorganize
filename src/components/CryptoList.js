@@ -4,7 +4,7 @@ import { View, ScrollView, Image } from "react-native";
 import { Text, List, ListItem, Button, SearchBar } from "react-native-elements";
 import { filter } from "lodash";
 import CryptoData from "../lib/CryptoData";
-import globalVars from "../lib/globalVars";
+import globalHelpers from "../lib/globalHelpers";
 import cryptoIcons from "../lib/cryptoIcons";
 import styles from "../styles/styles";
 
@@ -55,7 +55,8 @@ class CryptoList extends React.Component {
                 title="Add Key"
                 borderRadius={5}
                 icon={{ name: "plus", type: "font-awesome" }}
-                backgroundColor={globalVars.buttonColor}
+                backgroundColor={globalHelpers.buttonColor}
+                onPress={() => this.props.navigation.navigate("CryptoForm", {})}
               />
             </View>
             <View style={styles.buttonContainer}>

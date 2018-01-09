@@ -3,23 +3,21 @@ import { View } from "react-native";
 import { Header, Text } from "react-native-elements";
 import CryptoList from "./CryptoList";
 import styles from "../styles/styles";
-import globalVars from "../lib/globalVars";
+import globalHelpers from "../lib/globalHelpers";
 
 export default class Home extends React.Component {
   static navigationOptions = {
     title: "Cryptorganize",
     headerStyle: styles.mainHeader,
-    headerTintColor: globalVars.headerTintColor,
+    headerTintColor: globalHelpers.headerTintColor,
     headerTitleStyle: styles.headerTitle
   };
 
   render() {
     return (
-      <View style={styles.homeContainer}>
+      <View style={styles.basicContainer}>
         <View style={styles.titleContainer}>
-          <Text h4 style={styles.centerText}>
-            Public Keys
-          </Text>
+          <Text style={styles.homeTitle}>Public Keys</Text>
         </View>
         <CryptoList navigation={this.props.navigation} />
       </View>
