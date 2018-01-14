@@ -60,6 +60,26 @@ class PublicKey extends React.Component {
         <QRCode size={250} value={params.key} />
         <MessageBarAlert ref="alert" />
         <BlockChainExplorer currency={params.currency} publicKey={params.key} />
+        <View style={styles.inlineContainer}>
+          <Button
+            backgroundColor={globalHelpers.buttonColor}
+            borderRadius={5}
+            icon={{ name: "clipboard", type: "font-awesome" }}
+            title="Edit"
+            onPress={() =>
+              this.props.navigation.navigate("CryptoForm", {
+                name: params.name,
+                publicKey: params.key
+              })
+            }
+          />
+          <Button
+            backgroundColor={globalHelpers.deleteButtonColor}
+            borderRadius={5}
+            icon={{ name: "trash", type: "font-awesome" }}
+            title="Delete"
+          />
+        </View>
       </View>
     );
   }

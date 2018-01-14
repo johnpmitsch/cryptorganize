@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
   },
 
   exploreButton: {
-    marginTop: 50
+    marginTop: 50,
+    marginBottom: 20
   },
 
   publicKeyButton: {
@@ -39,8 +40,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
 
-  aboveListContainer: {
-    flex: 1,
+  inlineContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -81,6 +81,22 @@ const styles = StyleSheet.create({
   homeTitle: {
     textAlign: "center",
     fontSize: 20
+  },
+
+  currencyIconLarge: {
+    width: 75,
+    height: 75,
+    marginBottom: 25
+  },
+
+  centeredContainer: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
+  submitKeyButton: {
+    marginTop: 20
   }
 });
 

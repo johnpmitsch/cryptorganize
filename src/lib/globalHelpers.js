@@ -1,6 +1,7 @@
 globalVars = {
   headerTintColor: "white",
   buttonColor: "#3498db",
+  deleteButtonColor: "#FF4136",
   humanize: str => {
     const frags = str.split("_");
     for (i = 0; i < frags.length; i++) {

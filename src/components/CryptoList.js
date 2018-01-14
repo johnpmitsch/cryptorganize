@@ -49,7 +49,7 @@ class CryptoList extends React.Component {
     return (
       <View>
         <ScrollView>
-          <View style={styles.aboveListContainer}>
+          <View style={styles.inlineContainer}>
             <View style={styles.buttonContainer}>
               <Button
                 title="Add Key"
