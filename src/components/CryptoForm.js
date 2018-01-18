@@ -4,7 +4,11 @@ import { Button, FormLabel, FormInput, Text } from "react-native-elements";
 import ModalDropdown from "react-native-modal-dropdown";
 import cryptoIcons from "../lib/cryptoIcons";
 import globalHelpers from "../lib/globalHelpers";
+import { addPublicKey } from "../lib/StorageHelper";
 import styles from "../styles/styles";
+
+const MessageBarManager = require("react-native-message-bar").MessageBarManager;
+const MessageBarAlert = require("react-native-message-bar").MessageBar;
 
 class CryptoForm extends React.Component {
   constructor(props) {
@@ -19,6 +23,15 @@ class CryptoForm extends React.Component {
     };
     this.togglePicker = this.togglePicker.bind(this);
     this.getIcon = this.getIcon.bind(this);
+    this.addKey = this.addKey.bind(this);
+  }
+
+  componentDidMount() {
+    MessageBarManager.registerMessageBar(this.refs.alert);
+  }
+
+  componentWillUnmount() {
+    MessageBarManager.unregisterMessageBar();
   }
 
   getIcon() {
@@ -30,6 +43,25 @@ class CryptoForm extends React.Component {
 
   togglePicker() {
     this.setState({ showCurrencies: !this.state.showCurrencies });
+  }
+
+  addKey(key) {
+    console.log("addKey");
+    addPublicKey(key)
+      .then(key => {
+        MessageBarManager.showAlert({
+          message: `${key.name} saved`,
+          alertType: "success",
+          duration: 1500
+        });
+      })
+      .catch(err => {
+        MessageBarManager.showAlert({
+          message: `${err}`,
+          alertType: "warning",
+          duration: 3000
+        });
+      });
   }
 
   static navigationOptions = {
@@ -112,8 +144,15 @@ class CryptoForm extends React.Component {
           style={styles.submitKeyButton}
           borderRadius={5}
           backgroundColor={globalHelpers.buttonColor}
-          onPress={() => {}}
+          onPress={() => {
+            this.addKey({
+              name: this.state.name,
+              key: this.state.publicKey,
+              currency: this.state.currency
+            });
+          }}
         />
+        <MessageBarAlert ref="alert" />
       </View>
     );
   }

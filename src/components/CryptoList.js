@@ -40,7 +40,7 @@ class CryptoList extends React.Component {
   filterKeys(searchText, keys) {
     let text = searchText.toLowerCase();
     return filter(keys, n => {
-      let key = n.title.toLowerCase();
+      let key = n.name.toLowerCase();
       return key.indexOf(text) !== -1;
     });
   }
@@ -74,7 +74,7 @@ class CryptoList extends React.Component {
             {this.state.visibleList.map((item, i) => (
               <ListItem
                 key={i}
-                title={item.title}
+                title={item.name}
                 leftIcon={
                   <Image
                     style={styles.cryptoIcon}
@@ -84,7 +84,7 @@ class CryptoList extends React.Component {
                 }
                 onPress={() =>
                   this.props.navigation.navigate("PublicKey", {
-                    title: item.title,
+                    name: item.name,
                     key: item.key,
                     currency: item.currency
                   })

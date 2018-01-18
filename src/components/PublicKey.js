@@ -33,7 +33,7 @@ class PublicKey extends React.Component {
   }
 
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.title,
+    title: navigation.state.params.name,
     headerStyle: styles.mainHeader,
     headerTintColor: globalHelpers.headerTintColor
   });
@@ -58,7 +58,6 @@ class PublicKey extends React.Component {
           title={params.key}
         />
         <QRCode size={250} value={params.key} />
-        <MessageBarAlert ref="alert" />
         <BlockChainExplorer currency={params.currency} publicKey={params.key} />
         <View style={styles.inlineContainer}>
           <Button
@@ -80,6 +79,7 @@ class PublicKey extends React.Component {
             title="Delete"
           />
         </View>
+        <MessageBarAlert ref="alert" />
       </View>
     );
   }
