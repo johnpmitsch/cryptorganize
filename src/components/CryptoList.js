@@ -3,22 +3,37 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { View, ScrollView, Image } from "react-native";
 import { Text, List, ListItem, Button, SearchBar } from "react-native-elements";
 import { filter } from "lodash";
-import CryptoData from "../lib/CryptoData";
+import { getPublicKeys } from "../lib/StorageHelper";
 import globalHelpers from "../lib/globalHelpers";
 import cryptoIcons from "../lib/cryptoIcons";
 import styles from "../styles/styles";
+
+const MessageBarManager = require("react-native-message-bar").MessageBarManager;
+const MessageBarAlert = require("react-native-message-bar").MessageBar;
 
 class CryptoList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fullList: CryptoData,
-      visibleList: CryptoData,
+      fullList: [],
+      visibleList: [],
       searchText: ""
     };
     this.setSearchText = this.setSearchText.bind(this);
     this.filterKeys = this.filterKeys.bind(this);
     this.clearSearchText = this.clearSearchText.bind(this);
+    this.displayAlert = this.displayAlert.bind(this);
+  }
+
+  componentDidMount() {
+    MessageBarManager.registerMessageBar(this.refs.alert);
+    getPublicKeys().then(publicKeys => {
+      this.setState({ fullList: publicKeys, visibleList: publicKeys });
+    });
+  }
+
+  componentWillUnmount() {
+    MessageBarManager.unregisterMessageBar();
   }
 
   clearSearchText() {
@@ -45,9 +60,22 @@ class CryptoList extends React.Component {
     });
   }
 
+  displayAlert(params) {
+    MessageBarManager.showAlert({
+      message: params.message,
+      alertType: params.messageType || "success",
+      duration: 1500
+    });
+  }
+
   render() {
+    const { params } = this.props.navigation.state;
+    if (params && params.message) this.displayAlert(params);
     return (
       <View>
+        <View style={styles.titleContainer}>
+          <Text style={styles.homeTitle}>Public Keys</Text>
+        </View>
         <ScrollView>
           <View style={styles.inlineContainer}>
             <View style={styles.buttonContainer}>
@@ -93,6 +121,7 @@ class CryptoList extends React.Component {
             ))}
           </List>
         </ScrollView>
+        <MessageBarAlert ref="alert" />
       </View>
     );
   }

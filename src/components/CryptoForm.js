@@ -21,6 +21,7 @@ class CryptoForm extends React.Component {
       name: "",
       explorerUrl: ""
     };
+
     this.togglePicker = this.togglePicker.bind(this);
     this.getIcon = this.getIcon.bind(this);
     this.addKey = this.addKey.bind(this);
@@ -46,13 +47,10 @@ class CryptoForm extends React.Component {
   }
 
   addKey(key) {
-    console.log("addKey");
     addPublicKey(key)
       .then(key => {
-        MessageBarManager.showAlert({
-          message: `${key.name} saved`,
-          alertType: "success",
-          duration: 1500
+        this.props.navigation.navigate("Main", {
+          message: `${key.name} saved`
         });
       })
       .catch(err => {

@@ -5,6 +5,7 @@ import styles from "../styles/styles";
 import QRCode from "react-native-qrcode-svg";
 import globalHelpers from "../lib/globalHelpers";
 import BlockChainExplorer from "./BlockChainExplorer";
+import { deleteKey } from "../lib/StorageHelper";
 import cryptoIcons from "../lib/cryptoIcons";
 
 const MessageBarManager = require("react-native-message-bar").MessageBarManager;
@@ -13,6 +14,7 @@ const MessageBarAlert = require("react-native-message-bar").MessageBar;
 class PublicKey extends React.Component {
   constructor(props) {
     super(props);
+    this.removeKey = this.removeKey.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +32,26 @@ class PublicKey extends React.Component {
       alertType: "success",
       duration: 1500
     });
+  }
+
+  removeKey(params) {
+    const key = {
+      name: params.name,
+      key: params.key,
+      currency: params.currency
+    };
+    deleteKey(key)
+      .then(key => {
+        const message = `${key.name} removed`;
+        this.props.navigation.navigate("Main", { message: message });
+      })
+      .catch(err => {
+        const message = `Error removing ${key}`;
+        this.props.navigation.navigate("Main", {
+          message: message,
+          messageType: "error"
+        });
+      });
   }
 
   static navigationOptions = ({ navigation }) => ({
@@ -77,6 +99,7 @@ class PublicKey extends React.Component {
             borderRadius={5}
             icon={{ name: "trash", type: "font-awesome" }}
             title="Delete"
+            onPress={() => this.removeKey(params)}
           />
         </View>
         <MessageBarAlert ref="alert" />
