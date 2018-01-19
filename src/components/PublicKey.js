@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Clipboard, View } from "react-native";
+import { Alert, Image, Clipboard, View } from "react-native";
 import { Button, Text, ListItem } from "react-native-elements";
 import styles from "../styles/styles";
 import QRCode from "react-native-qrcode-svg";
@@ -15,6 +15,7 @@ class PublicKey extends React.Component {
   constructor(props) {
     super(props);
     this.removeKey = this.removeKey.bind(this);
+    this.confirmDeletion = this.confirmDeletion.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +33,22 @@ class PublicKey extends React.Component {
       alertType: "success",
       duration: 1500
     });
+  }
+
+  confirmDeletion(params) {
+    Alert.alert(
+      "Confirm Deletion",
+      `Are you sure you want to delete ${params.name}?`,
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel"
+        },
+        { text: "Yes", onPress: () => this.removeKey(params) }
+      ],
+      { cancelable: false }
+    );
   }
 
   removeKey(params) {
@@ -99,7 +116,7 @@ class PublicKey extends React.Component {
             borderRadius={5}
             icon={{ name: "trash", type: "font-awesome" }}
             title="Delete"
-            onPress={() => this.removeKey(params)}
+            onPress={() => this.confirmDeletion(params)}
           />
         </View>
         <MessageBarAlert ref="alert" />
