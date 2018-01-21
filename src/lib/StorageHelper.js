@@ -6,7 +6,7 @@ String.prototype.capitalize = function() {
 };
 
 const verifyKeyParams = key => {
-  return key.currency && key.name && key.key;
+  return key.currency && key.name && key.publicKey;
 };
 
 export const getPublicKeys = () => {
@@ -20,7 +20,7 @@ export const getPublicKeys = () => {
 };
 
 export const addPublicKey = key => {
-  //  AsyncStorage.removeItem("publicKeys");
+  AsyncStorage.removeItem("publicKeys");
   return new Promise((resolve, reject) => {
     if (!verifyKeyParams(key)) reject("Please fill out all fields");
     getPublicKeys()
@@ -32,9 +32,7 @@ export const addPublicKey = key => {
           );
         });
         const currency = key.currency.capitalize().replace(/[_-]/g, " ");
-        const keyFoundMessage = `${currency} public key ${
-          key.name
-        } already exists!`;
+        const keyFoundMessage = `${currency} public key ${key.name} already exists!`;
         if (alreadyCreated) reject(keyFoundMessage);
         publicKeys.unshift(key);
         AsyncStorage.setItem("publicKeys", JSON.stringify(publicKeys));
@@ -46,7 +44,7 @@ export const addPublicKey = key => {
   });
 };
 
-export const deleteKey = key => {
+export const deletePublicKey = key => {
   return new Promise((resolve, reject) => {
     getPublicKeys()
       .then(publicKeys => {
@@ -55,6 +53,24 @@ export const deleteKey = key => {
         });
         AsyncStorage.setItem("publicKeys", JSON.stringify(withKeyRemoved));
         resolve(key);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+
+export const editPublicKey = (originalKey, newKey) => {
+  return new Promise((resolve, reject) => {
+    deletePublicKey(originalKey)
+      .then(key => {
+        addPublicKey(newKey)
+          .then(key => {
+            resolve(key);
+          })
+          .catch(err => {
+            reject(err);
+          });
       })
       .catch(err => {
         reject(err);

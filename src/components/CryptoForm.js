@@ -4,7 +4,7 @@ import { Button, FormLabel, FormInput, Text } from "react-native-elements";
 import ModalDropdown from "react-native-modal-dropdown";
 import cryptoIcons from "../lib/cryptoIcons";
 import globalHelpers from "../lib/globalHelpers";
-import { addPublicKey } from "../lib/StorageHelper";
+import { addPublicKey, editPublicKey } from "../lib/StorageHelper";
 import styles from "../styles/styles";
 
 const MessageBarManager = require("react-native-message-bar").MessageBarManager;
@@ -25,6 +25,25 @@ class CryptoForm extends React.Component {
     this.togglePicker = this.togglePicker.bind(this);
     this.getIcon = this.getIcon.bind(this);
     this.addKey = this.addKey.bind(this);
+    this.editKey = this.editKey.bind(this);
+    this.displayError = this.displayError.bind(this);
+  }
+
+  componentWillMount() {
+    let params = this.props.navigation.state.params;
+    // These values are only passed in for editing
+    console.log(params);
+    if (params.name && params.publicKey && params.currency) {
+      console.log(this.state);
+      this.state.name = params.name;
+      this.state.publicKey = params.publicKey;
+      this.state.currency = params.currency;
+      this.originalKey = {
+        name: params.name,
+        publicKey: params.publicKey,
+        currency: params.currency
+      };
+    }
   }
 
   componentDidMount() {
@@ -46,6 +65,26 @@ class CryptoForm extends React.Component {
     this.setState({ showCurrencies: !this.state.showCurrencies });
   }
 
+  displayError(error) {
+    MessageBarManager.showAlert({
+      message: `${error}`,
+      alertType: "warning",
+      duration: 3000
+    });
+  }
+
+  editKey(originalKey, newKey) {
+    editPublicKey(originalKey, newKey)
+      .then(key => {
+        this.props.navigation.navigate("Main", {
+          message: `${key.name} updated`
+        });
+      })
+      .catch(err => {
+        this.displayError(err);
+      });
+  }
+
   addKey(key) {
     addPublicKey(key)
       .then(key => {
@@ -54,12 +93,21 @@ class CryptoForm extends React.Component {
         });
       })
       .catch(err => {
-        MessageBarManager.showAlert({
-          message: `${err}`,
-          alertType: "warning",
-          duration: 3000
-        });
+        this.displayError(err);
       });
+  }
+
+  addOrUpdateKey(originalKey, newKey) {
+    if (
+      originalKey &&
+      originalKey.name &&
+      originalKey.publicKey &&
+      originalKey.currency
+    ) {
+      this.editKey(originalKey, newKey);
+    } else {
+      this.addKey(newKey);
+    }
   }
 
   static navigationOptions = {
@@ -70,6 +118,14 @@ class CryptoForm extends React.Component {
   };
 
   render() {
+    const { params } = this.props.navigation.state;
+    // Check for params passed in for editing a key
+    const newKey = {
+      name: this.state.name,
+      publicKey: this.state.publicKey,
+      currency: this.state.currency
+    };
+
     return (
       <View style={styles.basicContainer}>
         <FormLabel>Name</FormLabel>
@@ -99,34 +155,32 @@ class CryptoForm extends React.Component {
           iconRight={this.getIcon()}
           onPress={this.togglePicker}
         />
-        {this.state.showCurrencies && (
+        {this.state.showCurrencies &&
           <Picker
             mode="dropdown"
             style={styles.currencyPicker}
             selectedValue={this.state.currency}
-            onValueChange={(itemValue, itemIndex) =>
-              this.setState({ currency: itemValue })
-            }
+            onValueChange={(itemValue, itemIndex) => {
+              this.setState({ currency: itemValue });
+            }}
           >
-            {Object.keys(cryptoIcons).map(key => (
+            {Object.keys(cryptoIcons).map(key =>
               <Picker.Item
                 label={globalHelpers.humanize(key)}
                 value={key}
                 key={key}
               />
-            ))}
-          </Picker>
-        )}
-        {this.state.currency !== "" && (
+            )}
+          </Picker>}
+        {this.state.currency !== "" &&
           <View style={styles.centeredContainer}>
             <Image
               style={styles.currencyIconLarge}
-              source={cryptoIcons[this.state.currency]}
+              source={cryptoIcons[params.currency || this.state.currency]}
               resizeMode="contain"
             />
-          </View>
-        )}
-        {this.state.currency === "other" && (
+          </View>}
+        {this.state.currency === "other" &&
           <View>
             <FormLabel>Explorer URL (optional)</FormLabel>
             <FormInput
@@ -135,19 +189,15 @@ class CryptoForm extends React.Component {
                 this.setState({ explorerUrl: text });
               }}
             />
-          </View>
-        )}
+          </View>}
         <Button
           title="Submit"
           style={styles.submitKeyButton}
           borderRadius={5}
           backgroundColor={globalHelpers.buttonColor}
           onPress={() => {
-            this.addKey({
-              name: this.state.name,
-              key: this.state.publicKey,
-              currency: this.state.currency
-            });
+            console.log(newKey);
+            this.addOrUpdateKey(this.originalKey, newKey);
           }}
         />
         <MessageBarAlert ref="alert" />

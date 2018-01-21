@@ -99,7 +99,7 @@ class CryptoList extends React.Component {
             </View>
           </View>
           <List>
-            {this.state.visibleList.map((item, i) => (
+            {this.state.visibleList.map((item, i) =>
               <ListItem
                 key={i}
                 title={item.name}
@@ -113,12 +113,11 @@ class CryptoList extends React.Component {
                 onPress={() =>
                   this.props.navigation.navigate("PublicKey", {
                     name: item.name,
-                    key: item.key,
+                    publicKey: item.publicKey,
                     currency: item.currency
-                  })
-                }
+                  })}
               />
-            ))}
+            )}
           </List>
         </ScrollView>
         <MessageBarAlert ref="alert" />

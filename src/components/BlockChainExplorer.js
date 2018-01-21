@@ -38,8 +38,7 @@ class BlockChainExplorer extends React.Component {
           onPress={() =>
             Linking.openURL(
               this.explorerUrl(this.props.currency, this.props.publicKey)
-            )
-          }
+            )}
           backgroundColor={globalHelpers.buttonColor}
         />
       </View>

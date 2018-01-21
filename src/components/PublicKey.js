@@ -5,7 +5,7 @@ import styles from "../styles/styles";
 import QRCode from "react-native-qrcode-svg";
 import globalHelpers from "../lib/globalHelpers";
 import BlockChainExplorer from "./BlockChainExplorer";
-import { deleteKey } from "../lib/StorageHelper";
+import { deletePublicKey } from "../lib/StorageHelper";
 import cryptoIcons from "../lib/cryptoIcons";
 
 const MessageBarManager = require("react-native-message-bar").MessageBarManager;
@@ -45,7 +45,7 @@ class PublicKey extends React.Component {
           onPress: () => {},
           style: "cancel"
         },
-        { text: "Yes", onPress: () => this.removeKey(params) }
+        { text: "Delete", onPress: () => this.removeKey(params) }
       ],
       { cancelable: false }
     );
@@ -54,10 +54,10 @@ class PublicKey extends React.Component {
   removeKey(params) {
     const key = {
       name: params.name,
-      key: params.key,
+      publicKey: params.publicKey,
       currency: params.currency
     };
-    deleteKey(key)
+    deletePublicKey(key)
       .then(key => {
         const message = `${key.name} removed`;
         this.props.navigation.navigate("Main", { message: message });
@@ -93,23 +93,27 @@ class PublicKey extends React.Component {
           borderRadius={5}
           fontSize={12}
           icon={{ name: "clipboard", type: "font-awesome" }}
-          onPress={() => this.copyToClipboard(params.key)}
-          title={params.key}
+          onPress={() => this.copyToClipboard(params.publicKey)}
+          title={params.publicKey}
         />
-        <QRCode size={250} value={params.key} />
-        <BlockChainExplorer currency={params.currency} publicKey={params.key} />
+        <QRCode size={250} value={params.publicKey} />
+        <BlockChainExplorer
+          currency={params.currency}
+          publicKey={params.publicKey}
+        />
         <View style={styles.inlineContainer}>
           <Button
             backgroundColor={globalHelpers.buttonColor}
             borderRadius={5}
-            icon={{ name: "clipboard", type: "font-awesome" }}
+            icon={{ name: "pencil-square-o", type: "font-awesome" }}
             title="Edit"
             onPress={() =>
               this.props.navigation.navigate("CryptoForm", {
                 name: params.name,
-                publicKey: params.key
-              })
-            }
+                publicKey: params.publicKey,
+                currency: params.currency,
+                edit: true
+              })}
           />
           <Button
             backgroundColor={globalHelpers.deleteButtonColor}
