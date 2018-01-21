@@ -114,7 +114,8 @@ class CryptoList extends React.Component {
                   this.props.navigation.navigate("PublicKey", {
                     name: item.name,
                     publicKey: item.publicKey,
-                    currency: item.currency
+                    currency: item.currency,
+                    explorerUrl: item.explorerUrl
                   })}
               />
             )}

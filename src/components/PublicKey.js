@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, Image, Clipboard, View } from "react-native";
+import { Alert, Image, Clipboard, View, ScrollView } from "react-native";
 import { Button, Text, ListItem } from "react-native-elements";
 import styles from "../styles/styles";
 import QRCode from "react-native-qrcode-svg";
@@ -26,8 +26,8 @@ class PublicKey extends React.Component {
     MessageBarManager.unregisterMessageBar();
   }
 
-  copyToClipboard(text) {
-    Clipboard.setString(text);
+  async copyToClipboard(text) {
+    await Clipboard.setString(text);
     MessageBarManager.showAlert({
       message: `Key copied to clipboard.`,
       alertType: "success",
@@ -79,6 +79,7 @@ class PublicKey extends React.Component {
 
   render() {
     const { params } = this.props.navigation.state;
+    console.log(params);
     return (
       <View style={styles.publicKeyContainer}>
         <Image
@@ -100,6 +101,7 @@ class PublicKey extends React.Component {
         <BlockChainExplorer
           currency={params.currency}
           publicKey={params.publicKey}
+          explorerUrl={params.explorerUrl}
         />
         <View style={styles.inlineContainer}>
           <Button

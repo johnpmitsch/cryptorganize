@@ -5,7 +5,8 @@ const cryptoIcons = {
   bitcoin_cash: require("../assets/crypto-icons/btcc.jpg"),
   dogecoin: require("../assets/crypto-icons/doge.jpg"),
   dash: require("../assets/crypto-icons/dash.jpg"),
-  other: require("../assets/crypto-icons/question_mark.jpg")
+  other: require("../assets/crypto-icons/question_mark.jpg"),
+  neo: require("../assets/crypto-icons/neo.jpg")
 };
 
 export default cryptoIcons;

@@ -31,17 +31,17 @@ class CryptoForm extends React.Component {
 
   componentWillMount() {
     let params = this.props.navigation.state.params;
-    // These values are only passed in for editing
-    console.log(params);
+    // These values are only passed in for editing and
+    // are used to fill the form with the initial values
     if (params.name && params.publicKey && params.currency) {
-      console.log(this.state);
       this.state.name = params.name;
       this.state.publicKey = params.publicKey;
       this.state.currency = params.currency;
       this.originalKey = {
         name: params.name,
         publicKey: params.publicKey,
-        currency: params.currency
+        currency: params.currency,
+        explorerUrl: params.explorerUrl
       };
     }
   }
@@ -123,7 +123,8 @@ class CryptoForm extends React.Component {
     const newKey = {
       name: this.state.name,
       publicKey: this.state.publicKey,
-      currency: this.state.currency
+      currency: this.state.currency,
+      explorerUrl: this.state.explorerUrl
     };
 
     return (
@@ -185,6 +186,7 @@ class CryptoForm extends React.Component {
             <FormLabel>Explorer URL (optional)</FormLabel>
             <FormInput
               placeholder="https://myspecialcoin.info/address/DFhECeqi4J7wHJyS76rePMabyQU3m5ZQ1o"
+              value={this.state.explorerUrl}
               onChangeText={text => {
                 this.setState({ explorerUrl: text });
               }}
@@ -196,7 +198,6 @@ class CryptoForm extends React.Component {
           borderRadius={5}
           backgroundColor={globalHelpers.buttonColor}
           onPress={() => {
-            console.log(newKey);
             this.addOrUpdateKey(this.originalKey, newKey);
           }}
         />

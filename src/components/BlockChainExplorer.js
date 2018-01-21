@@ -20,6 +20,8 @@ class BlockChainExplorer extends React.Component {
         return `https://dogechain.info/address/${publicKey}`;
       case "dash":
         return `https://live.blockcypher.com/dash/address/${publicKey}`;
+      case "neo":
+        return `https://neotracker.io/address/${publicKey}`;
       default:
         return null;
     }
@@ -37,7 +39,8 @@ class BlockChainExplorer extends React.Component {
           title="Explore"
           onPress={() =>
             Linking.openURL(
-              this.explorerUrl(this.props.currency, this.props.publicKey)
+              this.props.explorerUrl ||
+                this.explorerUrl(this.props.currency, this.props.publicKey)
             )}
           backgroundColor={globalHelpers.buttonColor}
         />

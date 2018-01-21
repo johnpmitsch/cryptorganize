@@ -14,13 +14,14 @@ export const getPublicKeys = () => {
     AsyncStorage.getItem("publicKeys", (err, result) => {
       if (err) reject(err);
       const publicKeys = result ? JSON.parse(result) : [];
+      console.log(publicKeys);
       resolve(publicKeys);
     });
   });
 };
 
 export const addPublicKey = key => {
-  AsyncStorage.removeItem("publicKeys");
+  //  AsyncStorage.removeItem("publicKeys");
   return new Promise((resolve, reject) => {
     if (!verifyKeyParams(key)) reject("Please fill out all fields");
     getPublicKeys()
@@ -49,6 +50,11 @@ export const deletePublicKey = key => {
     getPublicKeys()
       .then(publicKeys => {
         const withKeyRemoved = publicKeys.filter(element => {
+          return !(
+            _.isEqual(element.name, key.name) &&
+            _.isEqual(element.currency, key.currency)
+          );
+
           return !_.isEqual(element, key);
         });
         AsyncStorage.setItem("publicKeys", JSON.stringify(withKeyRemoved));

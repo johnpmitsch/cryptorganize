@@ -30,9 +30,9 @@ const crypto_data = [
     currency: "dash"
   },
   {
-    name: "Satoshi's Bitcoin",
-    key: "19C6TRProotyxfSnMjCU6RxQ7khF1k94B1",
-    currency: "bitcoin"
+    name: "Keanu's Neo",
+    key: "AbFHHPkMveH9gk6Q9Vr8jfAx73XrQrseCd",
+    currency: "neo"
   },
   {
     name: "Satoshi's Bitcoin",
