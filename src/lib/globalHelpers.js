@@ -1,6 +1,6 @@
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions } from "react-navigation";
 
-export default GlobalHelpers = {
+export default (GlobalHelpers = {
   headerTintColor: "white",
   buttonColor: "#3498db",
   deleteButtonColor: "#FF4136",
@@ -30,7 +30,13 @@ export default GlobalHelpers = {
       default:
         return "";
     }
+  },
+  clearNavStackAndNavigate: (navigationProps, targetRoute, params) => {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      params: params,
+      actions: [NavigationActions.navigate({ routeName: targetRoute })]
+    });
+    navigationProps.dispatch(resetAction);
   }
-}
-
-
+});

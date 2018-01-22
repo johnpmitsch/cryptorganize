@@ -78,7 +78,7 @@ class CryptoForm extends React.Component {
   editKey(originalKey, newKey) {
     editPublicKey(originalKey, newKey)
       .then(key => {
-        this.props.navigation.navigate("Main", {
+        GlobalHelpers.clearNavStackAndNavigate(this.props.navigation, "Main", {
           message: `${key.name} updated`
         });
       })
@@ -90,7 +90,7 @@ class CryptoForm extends React.Component {
   addKey(key) {
     addPublicKey(key)
       .then(key => {
-        this.props.navigation.navigate("Main", {
+        GlobalHelpers.clearNavStackAndNavigate(this.props.navigation, "Main", {
           message: `${key.name} saved`
         });
       })
@@ -100,7 +100,9 @@ class CryptoForm extends React.Component {
   }
 
   addOrUpdateKey(originalKey, newKey) {
-    newKey.explorerUrl = this.state.explorerUrl || GlobalHelpers.createExplorerUrl(newKey.currency, newKey.publicKey);
+    newKey.explorerUrl =
+      this.state.explorerUrl ||
+      GlobalHelpers.createExplorerUrl(newKey.currency, newKey.publicKey);
     if (
       originalKey &&
       originalKey.name &&
@@ -188,7 +190,7 @@ class CryptoForm extends React.Component {
           <View>
             <FormLabel>Explorer URL (optional)</FormLabel>
             <FormInput
-              placeholder="https://myspecialcoin.info/address/DFhECeqi4J7wHJyS76rePMabyQU3m5ZQ1o"
+              placeholder="www.myspecialcoin.info/address/DFhECeqi4J7wHJyS76rePMabyQU3m5ZQ1o"
               autoCapitalize="none"
               value={this.state.explorerUrl}
               onChangeText={text => {

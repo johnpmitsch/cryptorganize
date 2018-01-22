@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert, Image, Clipboard, View, ScrollView } from "react-native";
 import { Button, Text, ListItem } from "react-native-elements";
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions } from "react-navigation";
 import styles from "../styles/styles";
 import QRCode from "react-native-qrcode-svg";
 import GlobalHelpers from "../lib/GlobalHelpers";
@@ -17,7 +17,6 @@ class PublicKey extends React.Component {
     super(props);
     this.removeKey = this.removeKey.bind(this);
     this.confirmDeletion = this.confirmDeletion.bind(this);
-		this.clearNavStackAndNavigate = this.clearNavStackAndNavigate.bind(this);
   }
 
   componentDidMount() {
@@ -35,17 +34,6 @@ class PublicKey extends React.Component {
       alertType: "success",
       duration: 1500
     });
-  }
-
-  clearNavStackAndNavigate(targetRoute, params) {
-    const resetAction = NavigationActions.reset({
-      index: 0,
-      params: params,
-      actions: [
-              NavigationActions.navigate({ routeName: targetRoute }),
-            ],
-    });
-    this.props.navigation.dispatch(resetAction);
   }
 
   confirmDeletion(params) {
@@ -73,11 +61,13 @@ class PublicKey extends React.Component {
     deletePublicKey(key)
       .then(key => {
         const message = `${key.name} removed`;
-        this.clearNavStackAndNavigate("Main", { message: message });
+        GlobalHelpers.clearNavStackAndNavigate(this.props.navigation, "Main", {
+          message: message
+        });
       })
       .catch(err => {
         const message = `Error removing ${key}`;
-        this.clearNavStackAndNavigate("Main", {
+        GlobalHelpers.clearNavStackAndNavigate(this.props.navigation, "Main", {
           message: message,
           messageType: "error"
         });
@@ -111,9 +101,7 @@ class PublicKey extends React.Component {
           title={params.publicKey}
         />
         <QRCode size={250} value={params.publicKey} />
-        <BlockChainExplorer
-          explorerUrl={params.explorerUrl}
-        />
+        <BlockChainExplorer explorerUrl={params.explorerUrl} />
         <View style={styles.inlineContainer}>
           <Button
             backgroundColor={GlobalHelpers.buttonColor}

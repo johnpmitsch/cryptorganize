@@ -17,10 +17,7 @@ class BlockChainExplorer extends React.Component {
           icon={{ name: "binoculars", type: "font-awesome" }}
           title="Explore"
           disabled={!this.props.explorerUrl}
-          onPress={() =>
-            Linking.openURL(
-              this.props.explorerUrl
-            )}
+          onPress={() => Linking.openURL(this.props.explorerUrl)}
           backgroundColor={GlobalHelpers.buttonColor}
         />
       </View>
