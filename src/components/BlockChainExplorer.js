@@ -9,19 +9,20 @@ class BlockChainExplorer extends React.Component {
   render() {
     return (
       <View>
-        {this.props.explorerUrl && <Button
+        <Button
           backgroundColor={GlobalHelpers.buttonColor}
           borderRadius={5}
           fontSize={16}
           containerViewStyle={styles.exploreButton}
           icon={{ name: "binoculars", type: "font-awesome" }}
           title="Explore"
+          disabled={!this.props.explorerUrl}
           onPress={() =>
             Linking.openURL(
               this.props.explorerUrl
             )}
           backgroundColor={GlobalHelpers.buttonColor}
-        />}
+        />
       </View>
     );
   }

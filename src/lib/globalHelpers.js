@@ -1,3 +1,5 @@
+import { NavigationActions } from 'react-navigation';
+
 export default GlobalHelpers = {
   headerTintColor: "white",
   buttonColor: "#3498db",
@@ -29,6 +31,6 @@ export default GlobalHelpers = {
         return "";
     }
   }
-};
+}
 
 

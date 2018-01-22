@@ -12,7 +12,7 @@ const verifyKeyParams = key => {
 export const getPublicKeys = () => {
   return new Promise((resolve, reject) => {
     AsyncStorage.getItem("publicKeys", (err, result) => {
-      if (err) reject(err);
+      if (err) return reject(err);
       const publicKeys = result ? JSON.parse(result) : [];
       console.log(publicKeys);
       resolve(publicKeys);
@@ -23,7 +23,7 @@ export const getPublicKeys = () => {
 export const addPublicKey = key => {
   //  AsyncStorage.removeItem("publicKeys");
   return new Promise((resolve, reject) => {
-    if (!verifyKeyParams(key)) reject("Please fill out all fields");
+    if (!verifyKeyParams(key)) return reject("Please fill out all required fields");
     getPublicKeys()
       .then(publicKeys => {
         const alreadyCreated = publicKeys.find(element => {
@@ -34,7 +34,7 @@ export const addPublicKey = key => {
         });
         const currency = key.currency.capitalize().replace(/[_-]/g, " ");
         const keyFoundMessage = `${currency} public key ${key.name} already exists!`;
-        if (alreadyCreated) reject(keyFoundMessage);
+        if (alreadyCreated) return reject(keyFoundMessage);
         publicKeys.unshift(key);
         AsyncStorage.setItem("publicKeys", JSON.stringify(publicKeys));
         resolve(key);

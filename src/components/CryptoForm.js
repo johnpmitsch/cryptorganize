@@ -37,6 +37,8 @@ class CryptoForm extends React.Component {
       this.state.name = params.name;
       this.state.publicKey = params.publicKey;
       this.state.currency = params.currency;
+      this.state.explorerUrl = params.explorerUrl;
+
       this.originalKey = {
         name: params.name,
         publicKey: params.publicKey,
@@ -187,6 +189,7 @@ class CryptoForm extends React.Component {
             <FormLabel>Explorer URL (optional)</FormLabel>
             <FormInput
               placeholder="https://myspecialcoin.info/address/DFhECeqi4J7wHJyS76rePMabyQU3m5ZQ1o"
+              autoCapitalize="none"
               value={this.state.explorerUrl}
               onChangeText={text => {
                 this.setState({ explorerUrl: text });
