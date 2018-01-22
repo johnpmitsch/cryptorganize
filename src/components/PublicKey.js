@@ -99,8 +99,6 @@ class PublicKey extends React.Component {
         />
         <QRCode size={250} value={params.publicKey} />
         <BlockChainExplorer
-          currency={params.currency}
-          publicKey={params.publicKey}
           explorerUrl={params.explorerUrl}
         />
         <View style={styles.inlineContainer}>

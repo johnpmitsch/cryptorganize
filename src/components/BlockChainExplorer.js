@@ -6,31 +6,10 @@ import GlobalHelpers from "../lib/GlobalHelpers";
 import styles from "../styles/styles";
 
 class BlockChainExplorer extends React.Component {
-  explorerUrl(currency, publicKey) {
-    switch (currency) {
-      case "bitcoin":
-        return `https://blockchain.info/address/${publicKey}`;
-      case "litecoin":
-        return `https://live.blockcypher.com/ltc/address/${publicKey}`;
-      case "ethereum":
-        return `https://etherscan.io/address/${publicKey}`;
-      case "bitcoin_cash":
-        return `https://www.blocktrail.com/BCC/address/${publicKey}`;
-      case "dogecoin":
-        return `https://dogechain.info/address/${publicKey}`;
-      case "dash":
-        return `https://live.blockcypher.com/dash/address/${publicKey}`;
-      case "neo":
-        return `https://neotracker.io/address/${publicKey}`;
-      default:
-        return null;
-    }
-  }
-
   render() {
     return (
       <View>
-        <Button
+        {this.props.explorerUrl && <Button
           backgroundColor={GlobalHelpers.buttonColor}
           borderRadius={5}
           fontSize={16}
@@ -39,11 +18,10 @@ class BlockChainExplorer extends React.Component {
           title="Explore"
           onPress={() =>
             Linking.openURL(
-              this.props.explorerUrl ||
-                this.explorerUrl(this.props.currency, this.props.publicKey)
+              this.props.explorerUrl
             )}
           backgroundColor={GlobalHelpers.buttonColor}
-        />
+        />}
       </View>
     );
   }

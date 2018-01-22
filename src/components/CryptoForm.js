@@ -41,8 +41,8 @@ class CryptoForm extends React.Component {
         name: params.name,
         publicKey: params.publicKey,
         currency: params.currency,
+        explorerUrl: params.explorerUrl
       };
-      if (params.explorerUrl) this.originalKey.explorerUrl = params.explorerUrl;
     }
   }
 
@@ -98,6 +98,7 @@ class CryptoForm extends React.Component {
   }
 
   addOrUpdateKey(originalKey, newKey) {
+    newKey.explorerUrl = this.state.explorerUrl || GlobalHelpers.createExplorerUrl(newKey.currency, newKey.publicKey);
     if (
       originalKey &&
       originalKey.name &&
