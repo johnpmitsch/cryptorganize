@@ -3,7 +3,7 @@ import { Alert, Image, Clipboard, View, ScrollView } from "react-native";
 import { Button, Text, ListItem } from "react-native-elements";
 import styles from "../styles/styles";
 import QRCode from "react-native-qrcode-svg";
-import globalHelpers from "../lib/globalHelpers";
+import GlobalHelpers from "../lib/GlobalHelpers";
 import BlockChainExplorer from "./BlockChainExplorer";
 import { deletePublicKey } from "../lib/StorageHelper";
 import cryptoIcons from "../lib/cryptoIcons";
@@ -74,7 +74,7 @@ class PublicKey extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.name,
     headerStyle: styles.mainHeader,
-    headerTintColor: globalHelpers.headerTintColor
+    headerTintColor: GlobalHelpers.headerTintColor
   });
 
   render() {
@@ -90,7 +90,7 @@ class PublicKey extends React.Component {
         <Button
           raised
           containerViewStyle={styles.publicKeyButton}
-          backgroundColor={globalHelpers.buttonColor}
+          backgroundColor={GlobalHelpers.buttonColor}
           borderRadius={5}
           fontSize={12}
           icon={{ name: "clipboard", type: "font-awesome" }}
@@ -105,7 +105,7 @@ class PublicKey extends React.Component {
         />
         <View style={styles.inlineContainer}>
           <Button
-            backgroundColor={globalHelpers.buttonColor}
+            backgroundColor={GlobalHelpers.buttonColor}
             borderRadius={5}
             icon={{ name: "pencil-square-o", type: "font-awesome" }}
             title="Edit"
@@ -114,11 +114,11 @@ class PublicKey extends React.Component {
                 name: params.name,
                 publicKey: params.publicKey,
                 currency: params.currency,
-                edit: true
+                explorerUrl: params.explorerUrl
               })}
           />
           <Button
-            backgroundColor={globalHelpers.deleteButtonColor}
+            backgroundColor={GlobalHelpers.deleteButtonColor}
             borderRadius={5}
             icon={{ name: "trash", type: "font-awesome" }}
             title="Delete"

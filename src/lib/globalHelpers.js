@@ -1,4 +1,4 @@
-globalVars = {
+GlobalHelpers = {
   headerTintColor: "white",
   buttonColor: "#3498db",
   deleteButtonColor: "#FF4136",
@@ -11,4 +11,4 @@ globalVars = {
   }
 };
 
-export default globalVars;
+export default GlobalHelpers;

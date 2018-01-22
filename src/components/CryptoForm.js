@@ -3,7 +3,7 @@ import { Image, View, Picker } from "react-native";
 import { Button, FormLabel, FormInput, Text } from "react-native-elements";
 import ModalDropdown from "react-native-modal-dropdown";
 import cryptoIcons from "../lib/cryptoIcons";
-import globalHelpers from "../lib/globalHelpers";
+import GlobalHelpers from "../lib/GlobalHelpers";
 import { addPublicKey, editPublicKey } from "../lib/StorageHelper";
 import styles from "../styles/styles";
 
@@ -41,8 +41,8 @@ class CryptoForm extends React.Component {
         name: params.name,
         publicKey: params.publicKey,
         currency: params.currency,
-        explorerUrl: params.explorerUrl
       };
+      if (params.explorerUrl) this.originalKey.explorerUrl = params.explorerUrl;
     }
   }
 
@@ -113,7 +113,7 @@ class CryptoForm extends React.Component {
   static navigationOptions = {
     title: "New Public Key",
     headerStyle: styles.mainHeader,
-    headerTintColor: globalHelpers.headerTintColor,
+    headerTintColor: GlobalHelpers.headerTintColor,
     headerTitleStyle: styles.headerTitle
   };
 
@@ -167,7 +167,7 @@ class CryptoForm extends React.Component {
           >
             {Object.keys(cryptoIcons).map(key =>
               <Picker.Item
-                label={globalHelpers.humanize(key)}
+                label={GlobalHelpers.humanize(key)}
                 value={key}
                 key={key}
               />
@@ -196,7 +196,7 @@ class CryptoForm extends React.Component {
           title="Submit"
           style={styles.submitKeyButton}
           borderRadius={5}
-          backgroundColor={globalHelpers.buttonColor}
+          backgroundColor={GlobalHelpers.buttonColor}
           onPress={() => {
             this.addOrUpdateKey(this.originalKey, newKey);
           }}

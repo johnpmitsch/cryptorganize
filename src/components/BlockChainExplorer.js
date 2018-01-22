@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { Button, Text, ListItem } from "react-native-elements";
 import { Linking } from "react-native";
-import globalHelpers from "../lib/globalHelpers";
+import GlobalHelpers from "../lib/GlobalHelpers";
 import styles from "../styles/styles";
 
 class BlockChainExplorer extends React.Component {
@@ -31,7 +31,7 @@ class BlockChainExplorer extends React.Component {
     return (
       <View>
         <Button
-          backgroundColor={globalHelpers.buttonColor}
+          backgroundColor={GlobalHelpers.buttonColor}
           borderRadius={5}
           fontSize={16}
           containerViewStyle={styles.exploreButton}
@@ -42,7 +42,7 @@ class BlockChainExplorer extends React.Component {
               this.props.explorerUrl ||
                 this.explorerUrl(this.props.currency, this.props.publicKey)
             )}
-          backgroundColor={globalHelpers.buttonColor}
+          backgroundColor={GlobalHelpers.buttonColor}
         />
       </View>
     );
