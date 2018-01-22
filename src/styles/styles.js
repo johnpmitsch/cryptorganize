@@ -1,6 +1,8 @@
 import { StyleSheet } from "react-native";
+import { Platform } from "react-native";
 
 const backgroundColor = "white";
+const defaultSpacing = Platform.OS === "ios" ? 50 : 30;
 
 const styles = StyleSheet.create({
   backgroundIcon: {
@@ -19,12 +21,12 @@ const styles = StyleSheet.create({
   },
 
   exploreButton: {
-    marginTop: 50,
+    marginTop: defaultSpacing,
     marginBottom: 20
   },
 
   publicKeyButton: {
-    marginBottom: 50
+    marginBottom: defaultSpacing
   },
 
   mainHeader: {
