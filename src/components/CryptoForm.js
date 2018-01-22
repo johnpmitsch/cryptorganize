@@ -138,6 +138,7 @@ class CryptoForm extends React.Component {
         <FormInput
           placeholder="Satoshi's Bitcoin"
           value={this.state.name}
+          autoCapitalize="none"
           onChangeText={text => {
             this.setState({ name: text });
           }}
@@ -146,6 +147,7 @@ class CryptoForm extends React.Component {
         <FormLabel>Public Key</FormLabel>
         <FormInput
           placeholder="12c6DSiU4Rq3P4ZxziKxzrL5LmMBrzjrJX"
+          autoCapitalize="none"
           value={this.state.publicKey}
           onChangeText={text => {
             this.setState({ publicKey: text });

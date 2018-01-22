@@ -41,12 +41,13 @@ export const getPublicKeys = () => {
 };
 
 export const addPublicKey = key => {
-  //  AsyncStorage.removeItem("publicKeys");
   return new Promise((resolve, reject) => {
     if (!verifyKeyParams(key))
       return reject("Please fill out all required fields");
-    key.explorerUrl = addHttp(key.explorerUrl);
-    if (!validator.isURL(key.explorerUrl)) return reject("URL is not valid");
+    if (key.explorerUrl) {
+      key.explorerUrl = addHttp(key.explorerUrl);
+      if (!validator.isURL(key.explorerUrl)) return reject("URL is not valid");
+    }
     getPublicKeys()
       .then(publicKeys => {
         if (alreadyCreated(publicKeys, key)) {
