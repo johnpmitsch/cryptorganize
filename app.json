@@ -1,13 +1,16 @@
 {
   "expo": {
+		"name": "cryptorganize",
     "sdkVersion": "23.0.0",
+		"slug": "cryptorganize",
     "icon": "./icons/cryptorganize_icon.png",
+		"version": "1.0.0",
     "primaryColor": "#000000",
     "androidStatusBar": {
       "backgroundColor": "#000000"
     },
     "ios": {
-      "bundleIdentifier": "cryptorganize",
+      "bundleIdentifier": "com.jmitsch.cryptorganize",
       "buildNumber": "1.0.0"
     },
     "android": {
