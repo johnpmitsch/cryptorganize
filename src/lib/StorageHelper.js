@@ -34,7 +34,6 @@ export const getPublicKeys = () => {
     AsyncStorage.getItem("publicKeys", (err, result) => {
       if (err) return reject(err);
       const publicKeys = result ? JSON.parse(result) : [];
-      console.log(publicKeys);
       resolve(publicKeys);
     });
   });

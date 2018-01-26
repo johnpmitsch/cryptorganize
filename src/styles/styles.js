@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
 
   mainHeader: {
-    backgroundColor: "#3B3738"
+    backgroundColor: "#000000"
   },
 
   headerTitle: {
