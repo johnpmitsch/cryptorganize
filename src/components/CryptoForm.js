@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, View, Picker } from "react-native";
+import { Image, View, Picker, Platform } from "react-native";
 import { Button, FormLabel, FormInput, Text } from "react-native-elements";
 import ModalDropdown from "react-native-modal-dropdown";
 import cryptoIcons from "../lib/cryptoIcons";
@@ -13,10 +13,12 @@ const MessageBarAlert = require("react-native-message-bar").MessageBar;
 class CryptoForm extends React.Component {
   constructor(props) {
     super(props);
+    const ios = Platform.OS === "ios"
     this.state = {
       cryptoIcons: cryptoIcons,
-      showCurrencies: false,
+      showCurrencies: !ios,
       currency: "bitcoin",
+      ios: ios,
       publicKey: "",
       name: "",
       explorerUrl: ""
@@ -154,7 +156,7 @@ class CryptoForm extends React.Component {
           }}
         />
 
-        <Button
+      {this.state.ios && <Button
           iconRight
           title="Currency"
           backgroundColor="white"
@@ -162,7 +164,7 @@ class CryptoForm extends React.Component {
           containerViewStyle={styles.currencyButtonContainer}
           iconRight={this.getIcon()}
           onPress={this.togglePicker}
-        />
+        />}
         {this.state.showCurrencies &&
           <Picker
             mode="dropdown"
