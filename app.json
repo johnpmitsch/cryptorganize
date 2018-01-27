@@ -6,9 +6,6 @@
     "icon": "./icons/cryptorganize_icon.png",
 		"version": "1.0.0",
     "primaryColor": "#000000",
-    "androidStatusBar": {
-      "backgroundColor": "#000000"
-    },
     "ios": {
       "bundleIdentifier": "com.jmitsch.cryptorganize",
       "buildNumber": "1.0.0"
