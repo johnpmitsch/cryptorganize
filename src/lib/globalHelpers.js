@@ -1,6 +1,10 @@
 import { NavigationActions } from "react-navigation";
+const Dimensions = require('Dimensions'); 
+const { width, height } = Dimensions.get('window');
 
 export default (GlobalHelpers = {
+  windowHeight: height,
+  windowWidth: width,
   headerTintColor: "white",
   buttonColor: "#3498db",
   deleteButtonColor: "#FF4136",

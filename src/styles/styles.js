@@ -1,8 +1,10 @@
 import { StyleSheet } from "react-native";
 import { Platform } from "react-native";
+import GlobalHelpers from "../lib/GlobalHelpers";
 
 const backgroundColor = "white";
-const defaultSpacing = Platform.OS === "ios" ? 50 : 30;
+const defaultSpacing = Platform.OS === "ios" ? GlobalHelpers.windowHeight/16 : 30;
+const smallSpacing = GlobalHelpers.windowHeight/40;
 
 const styles = StyleSheet.create({
   backgroundIcon: {
@@ -22,7 +24,7 @@ const styles = StyleSheet.create({
 
   exploreButton: {
     marginTop: defaultSpacing,
-    marginBottom: 20
+    marginBottom: smallSpacing
   },
 
   publicKeyButton: {
@@ -71,8 +73,8 @@ const styles = StyleSheet.create({
   },
 
   currencyButtonContainer: {
-    marginTop: 20,
-    marginBottom: 20
+    marginTop: smallSpacing,
+    marginBottom: smallSpacing
   },
 
   currencyButtonText: {
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
   },
 
   submitKeyButton: {
-    marginTop: 20
+    marginTop: smallSpacing
   }
 });
 
