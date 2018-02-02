@@ -1,10 +1,10 @@
 {
   "expo": {
-		"name": "cryptorganize",
+    "name": "cryptorganize",
     "sdkVersion": "23.0.0",
-		"slug": "cryptorganize",
+    "slug": "cryptorganize",
     "icon": "./icons/cryptorganize_icon.png",
-		"version": "1.0.1",
+    "version": "1.0.1",
     "primaryColor": "#000000",
     "ios": {
       "bundleIdentifier": "com.jmitsch.cryptorganize",
