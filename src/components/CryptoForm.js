@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, View, Picker, Platform } from "react-native";
+import { Image, View, Picker, Platform, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Button, FormLabel, FormInput, Text } from "react-native-elements";
 import ModalDropdown from "react-native-modal-dropdown";
 import cryptoIcons from "../lib/cryptoIcons";
@@ -135,84 +135,86 @@ class CryptoForm extends React.Component {
     };
 
     return (
-      <View style={styles.basicContainer}>
-        <FormLabel>Name</FormLabel>
-        <FormInput
-          placeholder="Satoshi's Bitcoin"
-          value={this.state.name}
-          autoCapitalize="none"
-          onChangeText={text => {
-            this.setState({ name: text });
-          }}
-        />
-
-        <FormLabel>Public Key</FormLabel>
-        <FormInput
-          placeholder="12c6DSiU4Rq3P4ZxziKxzrL5LmMBrzjrJX"
-          autoCapitalize="none"
-          value={this.state.publicKey}
-          onChangeText={text => {
-            this.setState({ publicKey: text });
-          }}
-        />
-
-      {this.state.ios && <Button
-          iconRight
-          title="Currency"
-          backgroundColor="white"
-          textStyle={styles.currencyButtonText}
-          containerViewStyle={styles.currencyButtonContainer}
-          iconRight={this.getIcon()}
-          onPress={this.togglePicker}
-        />}
-        {this.state.showCurrencies &&
-          <Picker
-            mode="dropdown"
-            style={styles.currencyPicker}
-            selectedValue={this.state.currency}
-            onValueChange={(itemValue, itemIndex) => {
-              this.setState({ currency: itemValue });
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.basicContainer}>
+          <FormLabel>Name</FormLabel>
+          <FormInput
+            placeholder="Satoshi's Bitcoin"
+            value={this.state.name}
+            autoCapitalize="none"
+            onChangeText={text => {
+              this.setState({ name: text });
             }}
-          >
-            {Object.keys(cryptoIcons).map(key =>
-              <Picker.Item
-                label={GlobalHelpers.humanize(key)}
-                value={key}
-                key={key}
-              />
-            )}
-          </Picker>}
-        {this.state.currency !== "" &&
-          <View style={styles.centeredContainer}>
-            <Image
-              style={styles.currencyIconLarge}
-              source={cryptoIcons[params.currency || this.state.currency]}
-              resizeMode="contain"
-            />
-          </View>}
-        {this.state.currency === "other" &&
-          <View>
-            <FormLabel>Explorer URL (optional)</FormLabel>
-            <FormInput
-              placeholder="www.myspecialcoin.info/address/DFhECeqi4J7wHJyS76rePMabyQU3m5ZQ1o"
-              autoCapitalize="none"
-              value={this.state.explorerUrl}
-              onChangeText={text => {
-                this.setState({ explorerUrl: text });
+          />
+
+          <FormLabel>Public Key</FormLabel>
+          <FormInput
+            placeholder="12c6DSiU4Rq3P4ZxziKxzrL5LmMBrzjrJX"
+            autoCapitalize="none"
+            value={this.state.publicKey}
+            onChangeText={text => {
+              this.setState({ publicKey: text });
+            }}
+          />
+
+        {this.state.ios && <Button
+            iconRight
+            title="Currency"
+            backgroundColor="white"
+            textStyle={styles.currencyButtonText}
+            containerViewStyle={styles.currencyButtonContainer}
+            iconRight={this.getIcon()}
+            onPress={this.togglePicker}
+          />}
+          {this.state.showCurrencies &&
+            <Picker
+              mode="dropdown"
+              style={styles.currencyPicker}
+              selectedValue={this.state.currency}
+              onValueChange={(itemValue, itemIndex) => {
+                this.setState({ currency: itemValue });
               }}
-            />
-          </View>}
-        <Button
-          title="Submit"
-          style={styles.submitKeyButton}
-          borderRadius={5}
-          backgroundColor={GlobalHelpers.buttonColor}
-          onPress={() => {
-            this.addOrUpdateKey(this.originalKey, newKey);
-          }}
-        />
-        <MessageBarAlert ref="alert" />
-      </View>
+            >
+              {Object.keys(cryptoIcons).map(key =>
+                <Picker.Item
+                  label={GlobalHelpers.humanize(key)}
+                  value={key}
+                  key={key}
+                />
+              )}
+            </Picker>}
+          {this.state.currency !== "" &&
+            <View style={styles.centeredContainer}>
+              <Image
+                style={styles.currencyIconLarge}
+                source={cryptoIcons[params.currency || this.state.currency]}
+                resizeMode="contain"
+              />
+            </View>}
+          {this.state.currency === "other" &&
+            <View>
+              <FormLabel>Explorer URL (optional)</FormLabel>
+              <FormInput
+                placeholder="www.myspecialcoin.info/address/DFhECeqi4J7wHJyS76rePMabyQU3m5ZQ1o"
+                autoCapitalize="none"
+                value={this.state.explorerUrl}
+                onChangeText={text => {
+                  this.setState({ explorerUrl: text });
+                }}
+              />
+            </View>}
+          <Button
+            title="Submit"
+            style={styles.submitKeyButton}
+            borderRadius={5}
+            backgroundColor={GlobalHelpers.buttonColor}
+            onPress={() => {
+              this.addOrUpdateKey(this.originalKey, newKey);
+            }}
+          />
+          <MessageBarAlert ref="alert" />
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
