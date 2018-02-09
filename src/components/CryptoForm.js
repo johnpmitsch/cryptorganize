@@ -14,7 +14,7 @@ import { addPublicKey, editPublicKey } from "../lib/StorageHelper";
 import CryptoFormInput from "./CryptoFormInput";
 import CryptoCurrencyPicker from "./CryptoCurrencyPicker";
 import ExplorerUrl from "./ExplorerUrl";
-import cryptoIcons from "../lib/cryptoIcons";
+import CryptoIcons from "../lib/CryptoIcons";
 import styles from "../styles/styles";
 
 const MessageBarManager = require("react-native-message-bar").MessageBarManager;
@@ -137,6 +137,7 @@ class CryptoForm extends React.Component {
               this.setState({ name: text });
             }}
           />
+
           <CryptoFormInput
             label="Public Key"
             placeholder="12c6DSiU4Rq3P4ZxziKxzrL5LmMBrzjrJX"

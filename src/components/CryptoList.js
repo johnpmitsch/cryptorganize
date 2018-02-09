@@ -5,7 +5,7 @@ import { Text, List, ListItem, Button, SearchBar } from "react-native-elements";
 import { filter } from "lodash";
 import { getPublicKeys } from "../lib/StorageHelper";
 import GlobalHelpers from "../lib/GlobalHelpers";
-import cryptoIcons from "../lib/cryptoIcons";
+import CryptoIcons from "../lib/CryptoIcons";
 import styles from "../styles/styles";
 
 const MessageBarManager = require("react-native-message-bar").MessageBarManager;
@@ -106,7 +106,7 @@ class CryptoList extends React.Component {
                 leftIcon={
                   <Image
                     style={styles.cryptoIcon}
-                    source={cryptoIcons[item.currency]}
+                    source={CryptoIcons[item.currency]}
                     resizeMode="contain"
                   />
                 }

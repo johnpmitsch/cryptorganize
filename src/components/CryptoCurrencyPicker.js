@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, View, Picker, Platform, Keyboard } from "react-native";
 import { Button } from "react-native-elements";
-import cryptoIcons from "../lib/cryptoIcons";
+import CryptoIcons from "../lib/CryptoIcons";
 import styles from "../styles/styles";
 
 class CryptoCurrencyPicker extends React.Component {
@@ -49,7 +49,7 @@ class CryptoCurrencyPicker extends React.Component {
             selectedValue={this.props.selectedCurrency}
             onValueChange={this.props.onValueChange}
           >
-            {Object.keys(cryptoIcons).map(key =>
+            {Object.keys(CryptoIcons).map(key =>
               <Picker.Item
                 label={GlobalHelpers.humanize(key)}
                 value={key}
@@ -63,7 +63,7 @@ class CryptoCurrencyPicker extends React.Component {
             <Image
               style={styles.currencyIconLarge}
               source={
-                cryptoIcons[this.props.currency || this.props.selectedCurrency]
+                CryptoIcons[this.props.currency || this.props.selectedCurrency]
               }
               resizeMode="contain"
             />

@@ -7,7 +7,7 @@ import QRCode from "react-native-qrcode-svg";
 import GlobalHelpers from "../lib/GlobalHelpers";
 import BlockChainExplorer from "./BlockChainExplorer";
 import { deletePublicKey } from "../lib/StorageHelper";
-import cryptoIcons from "../lib/cryptoIcons";
+import CryptoIcons from "../lib/CryptoIcons";
 
 const MessageBarManager = require("react-native-message-bar").MessageBarManager;
 const MessageBarAlert = require("react-native-message-bar").MessageBar;
@@ -87,7 +87,7 @@ class PublicKey extends React.Component {
         <Image
           style={styles.backgroundIcon}
           resizeMode="cover"
-          source={cryptoIcons[params.currency]}
+          source={CryptoIcons[params.currency]}
         />
         <Button
           raised
