@@ -2,10 +2,11 @@ import React from "react";
 import { Image, View, Picker, Platform, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Button, FormLabel, FormInput, Text } from "react-native-elements";
 import ModalDropdown from "react-native-modal-dropdown";
-import cryptoIcons from "../lib/cryptoIcons";
 import GlobalHelpers from "../lib/GlobalHelpers";
 import { addPublicKey, editPublicKey } from "../lib/StorageHelper";
 import CryptoFormInput from "./CryptoFormInput";
+import CryptoCurrencyPicker from "./CryptoCurrencyPicker";
+import cryptoIcons from "../lib/cryptoIcons";
 import styles from "../styles/styles";
 
 const MessageBarManager = require("react-native-message-bar").MessageBarManager;
@@ -14,19 +15,12 @@ const MessageBarAlert = require("react-native-message-bar").MessageBar;
 class CryptoForm extends React.Component {
   constructor(props) {
     super(props);
-    const ios = Platform.OS === "ios"
     this.state = {
-      cryptoIcons: cryptoIcons,
-      showCurrencies: !ios,
       currency: "bitcoin",
-      ios: ios,
       publicKey: "",
       name: "",
       explorerUrl: ""
     };
-
-    this.togglePicker = this.togglePicker.bind(this);
-    this.getIcon = this.getIcon.bind(this);
     this.addKey = this.addKey.bind(this);
     this.editKey = this.editKey.bind(this);
     this.displayError = this.displayError.bind(this);
@@ -57,18 +51,6 @@ class CryptoForm extends React.Component {
 
   componentWillUnmount() {
     MessageBarManager.unregisterMessageBar();
-  }
-
-  getIcon() {
-    const pickerIcon = this.state.showCurrencies
-      ? "expand-less"
-      : "expand-more";
-    return { name: pickerIcon, color: "grey" };
-  }
-
-  togglePicker() {
-    Keyboard.dismiss();
-    this.setState({ showCurrencies: !this.state.showCurrencies });
   }
 
   displayError(error) {
@@ -155,40 +137,15 @@ class CryptoForm extends React.Component {
               this.setState({ publicKey: text });
             }}
           />
-        {this.state.ios && <Button
-            iconRight
-            title="Currency"
-            backgroundColor="white"
-            textStyle={styles.currencyButtonText}
-            containerViewStyle={styles.currencyButtonContainer}
-            iconRight={this.getIcon()}
-            onPress={this.togglePicker}
-          />}
-          {this.state.showCurrencies &&
-            <Picker
-              mode="dropdown"
-              style={styles.currencyPicker}
-              selectedValue={this.state.currency}
-              onValueChange={(itemValue, itemIndex) => {
-                this.setState({ currency: itemValue });
-              }}
-            >
-              {Object.keys(cryptoIcons).map(key =>
-                <Picker.Item
-                  label={GlobalHelpers.humanize(key)}
-                  value={key}
-                  key={key}
-                />
-              )}
-            </Picker>}
-          {this.state.currency !== "" &&
-            <View style={styles.centeredContainer}>
-              <Image
-                style={styles.currencyIconLarge}
-                source={cryptoIcons[params.currency || this.state.currency]}
-                resizeMode="contain"
-              />
-            </View>}
+
+          <CryptoCurrencyPicker
+            currency={params.currency}
+            selectedCurrency={this.state.currency}
+            onValueChange={(itemValue, itemIndex) => {
+              this.setState({ currency: itemValue });
+            }}
+          />
+
           {this.state.currency === "other" &&
             <View>
               <FormLabel>Explorer URL (optional)</FormLabel>
