@@ -5,6 +5,7 @@ import ModalDropdown from "react-native-modal-dropdown";
 import cryptoIcons from "../lib/cryptoIcons";
 import GlobalHelpers from "../lib/GlobalHelpers";
 import { addPublicKey, editPublicKey } from "../lib/StorageHelper";
+import CryptoFormInput from "./CryptoFormInput";
 import styles from "../styles/styles";
 
 const MessageBarManager = require("react-native-message-bar").MessageBarManager;
@@ -66,6 +67,7 @@ class CryptoForm extends React.Component {
   }
 
   togglePicker() {
+    Keyboard.dismiss();
     this.setState({ showCurrencies: !this.state.showCurrencies });
   }
 
@@ -137,26 +139,22 @@ class CryptoForm extends React.Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.basicContainer}>
-          <FormLabel>Name</FormLabel>
-          <FormInput
+          <CryptoFormInput
+            label="Name"
             placeholder="Satoshi's Bitcoin"
             value={this.state.name}
-            autoCapitalize="none"
             onChangeText={text => {
               this.setState({ name: text });
             }}
           />
-
-          <FormLabel>Public Key</FormLabel>
-          <FormInput
+          <CryptoFormInput
+            label="Public Key"
             placeholder="12c6DSiU4Rq3P4ZxziKxzrL5LmMBrzjrJX"
-            autoCapitalize="none"
             value={this.state.publicKey}
             onChangeText={text => {
               this.setState({ publicKey: text });
             }}
           />
-
         {this.state.ios && <Button
             iconRight
             title="Currency"
