@@ -1,11 +1,19 @@
 import React from "react";
-import { Image, View, Picker, Platform, TouchableWithoutFeedback, Keyboard } from "react-native";
+import {
+  Image,
+  View,
+  Picker,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard
+} from "react-native";
 import { Button, FormLabel, FormInput, Text } from "react-native-elements";
 import ModalDropdown from "react-native-modal-dropdown";
 import GlobalHelpers from "../lib/GlobalHelpers";
 import { addPublicKey, editPublicKey } from "../lib/StorageHelper";
 import CryptoFormInput from "./CryptoFormInput";
 import CryptoCurrencyPicker from "./CryptoCurrencyPicker";
+import ExplorerUrl from "./ExplorerUrl";
 import cryptoIcons from "../lib/cryptoIcons";
 import styles from "../styles/styles";
 
@@ -147,17 +155,13 @@ class CryptoForm extends React.Component {
           />
 
           {this.state.currency === "other" &&
-            <View>
-              <FormLabel>Explorer URL (optional)</FormLabel>
-              <FormInput
-                placeholder="www.myspecialcoin.info/address/DFhECeqi4J7wHJyS76rePMabyQU3m5ZQ1o"
-                autoCapitalize="none"
-                value={this.state.explorerUrl}
-                onChangeText={text => {
-                  this.setState({ explorerUrl: text });
-                }}
-              />
-            </View>}
+            <ExplorerUrl
+              value={this.state.explorerUrl}
+              onChangeText={text => {
+                this.setState({ explorerUrl: text });
+              }}
+            />}
+
           <Button
             title="Submit"
             style={styles.submitKeyButton}

@@ -99,7 +99,10 @@ class PublicKey extends React.Component {
           onPress={() => this.copyToClipboard(params.publicKey)}
           title={params.publicKey}
         />
-        <QRCode size={GlobalHelpers.windowWidth * .6} value={params.publicKey} />
+        <QRCode
+          size={GlobalHelpers.windowWidth * 0.6}
+          value={params.publicKey}
+        />
         <BlockChainExplorer explorerUrl={params.explorerUrl} />
         <View style={styles.inlineContainer}>
           <Button

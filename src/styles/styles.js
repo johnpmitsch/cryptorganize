@@ -3,8 +3,9 @@ import { Platform } from "react-native";
 import GlobalHelpers from "../lib/GlobalHelpers";
 
 const backgroundColor = "white";
-const defaultSpacing = Platform.OS === "ios" ? GlobalHelpers.windowHeight/16 : 30;
-const smallSpacing = GlobalHelpers.windowHeight/40;
+const defaultSpacing =
+  Platform.OS === "ios" ? GlobalHelpers.windowHeight / 16 : 30;
+const smallSpacing = GlobalHelpers.windowHeight / 40;
 
 const styles = StyleSheet.create({
   backgroundIcon: {

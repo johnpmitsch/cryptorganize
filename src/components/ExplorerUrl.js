@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { FormLabel, FormInput } from "react-native-elements";
 
-class CryptoFormInput extends React.Component {
+class explorerUrl extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -10,11 +10,9 @@ class CryptoFormInput extends React.Component {
   render() {
     return (
       <View>
-        <FormLabel>
-          {this.props.label}
-        </FormLabel>
+        <FormLabel>Explorer URL (optional)</FormLabel>
         <FormInput
-          placeholder={this.props.placeholder}
+          placeholder="www.myspecialcoin.info/address/DFhECeqi4J7wHJyS76rePMabyQU3m5ZQ1o"
           autoCapitalize="none"
           value={this.props.value}
           onChangeText={this.props.onChangeText}
@@ -24,4 +22,4 @@ class CryptoFormInput extends React.Component {
   }
 }
 
-export default CryptoFormInput;
+export default explorerUrl;

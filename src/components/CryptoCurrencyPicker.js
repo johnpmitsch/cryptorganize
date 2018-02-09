@@ -7,12 +7,12 @@ import styles from "../styles/styles";
 class CryptoCurrencyPicker extends React.Component {
   constructor(props) {
     super(props);
-    const ios = Platform.OS === "ios"
+    const ios = Platform.OS === "ios";
     this.state = {
       showCurrencies: !ios,
       ios: ios,
       currency: "bitcoin"
-    }
+    };
     this.togglePicker = this.togglePicker.bind(this);
     this.getIcon = this.getIcon.bind(this);
   }
@@ -32,15 +32,16 @@ class CryptoCurrencyPicker extends React.Component {
   render() {
     return (
       <View>
-      {this.state.ios && <Button
-          iconRight
-          title="Currency"
-          backgroundColor="white"
-          textStyle={styles.currencyButtonText}
-          containerViewStyle={styles.currencyButtonContainer}
-          iconRight={this.getIcon()}
-          onPress={this.togglePicker}
-        />}
+        {this.state.ios &&
+          <Button
+            iconRight
+            title="Currency"
+            backgroundColor="white"
+            textStyle={styles.currencyButtonText}
+            containerViewStyle={styles.currencyButtonContainer}
+            iconRight={this.getIcon()}
+            onPress={this.togglePicker}
+          />}
         {this.state.showCurrencies &&
           <Picker
             mode="dropdown"
@@ -57,16 +58,18 @@ class CryptoCurrencyPicker extends React.Component {
             )}
           </Picker>}
 
-          {this.state.currency !== "" &&
-            <View style={styles.centeredContainer}>
-              <Image
-                style={styles.currencyIconLarge}
-                source={cryptoIcons[this.props.currency || this.props.selectedCurrency]}
-                resizeMode="contain"
-              />
-            </View>}
-        </View>
-    )
+        {this.state.currency !== "" &&
+          <View style={styles.centeredContainer}>
+            <Image
+              style={styles.currencyIconLarge}
+              source={
+                cryptoIcons[this.props.currency || this.props.selectedCurrency]
+              }
+              resizeMode="contain"
+            />
+          </View>}
+      </View>
+    );
   }
 }
 

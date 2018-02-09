@@ -1,6 +1,6 @@
 import { NavigationActions } from "react-navigation";
-const Dimensions = require('Dimensions'); 
-const { width, height } = Dimensions.get('window');
+const Dimensions = require("Dimensions");
+const { width, height } = Dimensions.get("window");
 
 export default (GlobalHelpers = {
   windowHeight: height,
