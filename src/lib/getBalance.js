@@ -3,21 +3,19 @@ import axios from "axios";
 const currencyAbbreviation = {
   bitcoin: "btc",
   ethereum: "eth",
-  dash: "dash"
+  dash: "dash",
+  litecoin: "ltc",
+  dogecoin: "doge"
 };
 
 const conversionToWholeUnit = currency => {
   // coinmarketcap returns smaller denominations,
-  // this give the multiplier to convert to a whole unit.
+  // this returns the multiplier to convert to a whole unit.
   switch (currency) {
-    case "bitcoin":
-      return 0.00000001;
     case "ethereum":
       return 0.000000000000000001;
-    case "dash":
-      return 0.00000001;
     default:
-      return 1;
+      return 0.00000001;
   }
 };
 
@@ -42,11 +40,9 @@ const getBalance = (publicKey, currency) => {
     const explorer = `https://api.blockcypher.com/v1/${currencyAbbreviation[
       currency
     ]}/main/addrs/${publicKey}`;
-    console.log(explorer);
     axios
       .get(explorer)
       .then(response => {
-        //console.log(response.data.balance);
         const btc_balance = response.data.balance;
         convertToUSD(btc_balance, currency)
           .then(usd_balance => {

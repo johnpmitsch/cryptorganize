@@ -6,7 +6,7 @@ const crypto_data = [
   },
   {
     name: "My Litecoin",
-    key: "LayVYThCmftfohgUw1mhfx325HDvLKro68",
+    key: "LSqCzf5bPfkqGf94pJcfxWx5bZMPJE5XRf",
     currency: "litecoin"
   },
   {
@@ -21,7 +21,7 @@ const crypto_data = [
   },
   {
     name: "Such Wow",
-    key: "DFhECeqi4J7wHJyS76rePMabyQU3m5ZQ1o",
+    key: "DLN5m1o9vnEKLCsQ1mGa1g2Zf3kSMtqayc",
     currency: "dogecoin"
   },
   {
