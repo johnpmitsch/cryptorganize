@@ -42,5 +42,8 @@ export default (GlobalHelpers = {
       actions: [NavigationActions.navigate({ routeName: targetRoute })]
     });
     navigationProps.dispatch(resetAction);
+  },
+  numberWithCommas: (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 });
