@@ -100,9 +100,11 @@ class PublicKey extends React.Component {
           onPress={() => this.copyToClipboard(params.publicKey)}
           title={params.publicKey}
         />
-        <BalanceChecker
-          currency={params.currency}
-          publicKey={params.publicKey} />
+        {params.currency != "other" &&
+          <BalanceChecker
+            currency={params.currency}
+            publicKey={params.publicKey}
+          />}
         <QRCode
           size={GlobalHelpers.windowWidth * 0.6}
           value={params.publicKey}
