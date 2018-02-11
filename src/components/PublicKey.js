@@ -92,7 +92,8 @@ class PublicKey extends React.Component {
         />
         <Button
           raised
-          containerViewStyle={styles.publicKeyButton}
+          containerViewStyle={styles.publicKeyButtonContainer}
+          textStyle={styles.publicKeyButtonText}
           backgroundColor={GlobalHelpers.buttonColor}
           borderRadius={5}
           fontSize={12}

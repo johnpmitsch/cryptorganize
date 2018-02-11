@@ -35,8 +35,8 @@ const crypto_data = [
     currency: "neo"
   },
   {
-    name: "Satoshi's Bitcoin",
-    key: "19C6TRProotyxfSnMjCU6RxQ7khF1k94B1",
+    name: "My nano",
+    key: "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",
     currency: "bitcoin"
   },
   {

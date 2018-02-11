@@ -31,6 +31,8 @@ export default (GlobalHelpers = {
         return `https://live.blockcypher.com/dash/address/${publicKey}`;
       case "neo":
         return `https://neotracker.io/address/${publicKey}`;
+      case "nano":
+        return `https://www.nanode.co/account/${publicKey}`;
       default:
         return "";
     }

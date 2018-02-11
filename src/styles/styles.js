@@ -28,8 +28,12 @@ const styles = StyleSheet.create({
     marginBottom: smallSpacing
   },
 
-  publicKeyButton: {
+  publicKeyButtonContainer: {
     marginBottom: defaultSpacing
+  },
+
+  publicKeyButtonText: {
+    textAlign: "center"
   },
 
   mainHeader: {

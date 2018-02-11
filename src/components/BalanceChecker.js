@@ -14,7 +14,6 @@ class BalanceChecker extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.currency);
     getBalance(this.props.publicKey, this.props.currency)
       .then(balance => {
         this.setState({ balance: balance });

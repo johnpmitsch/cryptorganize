@@ -6,6 +6,7 @@ const CryptoIcons = {
   dogecoin: require("../assets/crypto-icons/doge.jpg"),
   dash: require("../assets/crypto-icons/dash.jpg"),
   neo: require("../assets/crypto-icons/neo.jpg"),
+  nano: require("../assets/crypto-icons/nano.jpg"),
   other: require("../assets/crypto-icons/question_mark.jpg")
 };
 
