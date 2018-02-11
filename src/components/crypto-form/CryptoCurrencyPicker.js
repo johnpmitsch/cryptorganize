@@ -1,8 +1,8 @@
 import React from "react";
 import { Image, View, Picker, Platform, Keyboard } from "react-native";
 import { Button } from "react-native-elements";
-import CryptoIcons from "../lib/CryptoIcons";
-import styles from "../styles/styles";
+import CryptoIcons from "../../lib/CryptoIcons";
+import styles from "../../styles/styles";
 
 class CryptoCurrencyPicker extends React.Component {
   constructor(props) {

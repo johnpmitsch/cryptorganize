@@ -57,10 +57,9 @@ const styles = StyleSheet.create({
   },
 
   publicKeyContainer: {
-    flex: 1,
-    backgroundColor: backgroundColor,
-    alignItems: "center",
-    justifyContent: "center"
+    borderWidth: 1,
+    height: 100,
+    width: 100
   },
 
   buttonContainer: {

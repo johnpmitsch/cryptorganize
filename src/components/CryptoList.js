@@ -1,9 +1,17 @@
 import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { View, ScrollView, Image } from "react-native";
+import {
+  View,
+  ScrollView,
+  Image,
+  FlatList,
+  TouchableWithoutFeedback,
+  Keyboard
+} from "react-native";
 import { Text, List, ListItem, Button, SearchBar } from "react-native-elements";
 import { filter } from "lodash";
 import { getPublicKeys } from "../lib/StorageHelper";
+import PublicKey from "./public-key/PublicKey.js";
 import GlobalHelpers from "../lib/GlobalHelpers";
 import CryptoIcons from "../lib/CryptoIcons";
 import styles from "../styles/styles";
@@ -76,51 +84,34 @@ class CryptoList extends React.Component {
         <View style={styles.titleContainer}>
           <Text style={styles.homeTitle}>Public Keys</Text>
         </View>
-        <ScrollView>
-          <View style={styles.inlineContainer}>
-            <View style={styles.buttonContainer}>
-              <Button
-                title="Add Key"
-                borderRadius={5}
-                icon={{ name: "plus", type: "font-awesome" }}
-                backgroundColor={GlobalHelpers.buttonColor}
-                onPress={() => this.props.navigation.navigate("CryptoForm", {})}
-              />
-            </View>
-            <View style={styles.buttonContainer}>
-              <SearchBar
-                lightTheme
-                round
-                clearIcon
-                containerStyle={styles.searchBar}
-                onChangeText={this.setSearchText}
-                onClearText={this.clearSearchText}
-              />
-            </View>
+        <View style={styles.inlineContainer}>
+          <View style={styles.buttonContainer}>
+            <Button
+              title="Add Key"
+              borderRadius={5}
+              icon={{ name: "plus", type: "font-awesome" }}
+              backgroundColor={GlobalHelpers.buttonColor}
+              onPress={() => this.props.navigation.navigate("CryptoForm", {})}
+            />
           </View>
-          <List>
-            {this.state.visibleList.map((item, i) =>
-              <ListItem
-                key={i}
-                title={item.name}
-                leftIcon={
-                  <Image
-                    style={styles.cryptoIcon}
-                    source={CryptoIcons[item.currency]}
-                    resizeMode="contain"
-                  />
-                }
-                onPress={() =>
-                  this.props.navigation.navigate("PublicKey", {
-                    name: item.name,
-                    publicKey: item.publicKey,
-                    currency: item.currency,
-                    explorerUrl: item.explorerUrl
-                  })}
-              />
-            )}
-          </List>
-        </ScrollView>
+          <View style={styles.buttonContainer}>
+            <SearchBar
+              lightTheme
+              round
+              clearIcon
+              containerStyle={styles.searchBar}
+              onChangeText={this.setSearchText}
+              onClearText={this.clearSearchText}
+            />
+          </View>
+        </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <FlatList
+            data={this.state.visibleList}
+            keyExtractor={(item, index) => index}
+            renderItem={({ item }) => <PublicKey />}
+          />
+        </TouchableWithoutFeedback>
         <MessageBarAlert ref="alert" />
       </View>
     );

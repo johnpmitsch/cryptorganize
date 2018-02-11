@@ -9,13 +9,13 @@ import {
 } from "react-native";
 import { Button, FormLabel, FormInput, Text } from "react-native-elements";
 import ModalDropdown from "react-native-modal-dropdown";
-import GlobalHelpers from "../lib/GlobalHelpers";
-import { addPublicKey, editPublicKey } from "../lib/StorageHelper";
+import GlobalHelpers from "../../lib/GlobalHelpers";
+import { addPublicKey, editPublicKey } from "../../lib/StorageHelper";
 import CryptoFormInput from "./CryptoFormInput";
 import CryptoCurrencyPicker from "./CryptoCurrencyPicker";
 import ExplorerUrl from "./ExplorerUrl";
-import CryptoIcons from "../lib/CryptoIcons";
-import styles from "../styles/styles";
+import CryptoIcons from "../../lib/CryptoIcons";
+import styles from "../../styles/styles";
 
 const MessageBarManager = require("react-native-message-bar").MessageBarManager;
 const MessageBarAlert = require("react-native-message-bar").MessageBar;
