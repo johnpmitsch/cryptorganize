@@ -5,8 +5,6 @@ import { NavigationActions } from "react-navigation";
 import styles from "../styles/styles";
 import QRCode from "react-native-qrcode-svg";
 import GlobalHelpers from "../lib/GlobalHelpers";
-import BlockChainExplorer from "./BlockChainExplorer";
-import BalanceChecker from "./BalanceChecker";
 import { deletePublicKey } from "../lib/StorageHelper";
 import CryptoIcons from "../lib/CryptoIcons";
 
@@ -101,16 +99,6 @@ class PublicKey extends React.Component {
           onPress={() => this.copyToClipboard(params.publicKey)}
           title={params.publicKey}
         />
-        {params.currency != "other" &&
-          <BalanceChecker
-            currency={params.currency}
-            publicKey={params.publicKey}
-          />}
-        <QRCode
-          size={GlobalHelpers.windowWidth * 0.6}
-          value={params.publicKey}
-        />
-        <BlockChainExplorer explorerUrl={params.explorerUrl} />
         <View style={styles.inlineContainer}>
           <Button
             backgroundColor={GlobalHelpers.buttonColor}

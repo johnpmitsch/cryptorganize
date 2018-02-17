@@ -13,7 +13,6 @@ import { filter } from "lodash";
 import { getPublicKeys } from "../lib/StorageHelper";
 import PublicKey from "./public-key/PublicKey.js";
 import GlobalHelpers from "../lib/GlobalHelpers";
-import CryptoIcons from "../lib/CryptoIcons";
 import styles from "../styles/styles";
 
 const MessageBarManager = require("react-native-message-bar").MessageBarManager;
@@ -105,13 +104,20 @@ class CryptoList extends React.Component {
             />
           </View>
         </View>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          <FlatList
-            data={this.state.visibleList}
-            keyExtractor={(item, index) => index}
-            renderItem={({ item }) => <PublicKey />}
-          />
-        </TouchableWithoutFeedback>
+        <View style={styles.cryptoListContainer}>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+              <FlatList
+                data={this.state.visibleList}
+                keyExtractor={(item, index) => index}
+                ListFooterComponent={() => ( <View style={{ height: 300 }} /> )}
+                renderItem={({ item }) =>
+                  <PublicKey
+                    publicKey={item}
+                    />
+                }
+              />
+          </TouchableWithoutFeedback>
+        </View>
         <MessageBarAlert ref="alert" />
       </View>
     );

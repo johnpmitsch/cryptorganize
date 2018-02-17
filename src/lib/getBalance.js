@@ -8,6 +8,19 @@ const currencyAbbreviation = {
   dogecoin: "doge"
 };
 
+const decimalPlaces = (currency) => {
+  switch (currency) {
+    case "bitcoin":
+      return 6;
+    case "ethereum":
+    case "litecoin":
+    case "dash":
+      return 4;
+    default:
+      return 2;
+  }
+}
+
 const conversionToWholeUnit = currency => {
   // coinmarketcap returns smaller denominations,
   // this returns the multiplier to convert to a whole unit.
@@ -43,10 +56,15 @@ const getBalance = (publicKey, currency) => {
     axios
       .get(explorer)
       .then(response => {
-        const btc_balance = response.data.balance;
-        convertToUSD(btc_balance, currency)
-          .then(usd_balance => {
-            resolve(GlobalHelpers.numberWithCommas(usd_balance.toFixed(2)));
+        const cryptoBalance = response.data.balance;
+        convertToUSD(cryptoBalance, currency)
+          .then(usdBalance => {
+            const conversion = conversionToWholeUnit(currency);
+            resolve({
+              usdBalance: GlobalHelpers.numberWithCommas(usdBalance.toFixed(2)),
+              cryptoBalance: GlobalHelpers.numberWithCommas((cryptoBalance * conversion).toFixed(decimalPlaces(currency))),
+              code: currencyAbbreviation[currency]
+            });
           })
           .catch(error => {
             reject(error);

@@ -8,6 +8,8 @@ export default (GlobalHelpers = {
   headerTintColor: "white",
   buttonColor: "#3498db",
   deleteButtonColor: "#FF4136",
+  secondaryButtonColor: "#5fb724",
+  supportedCurrencies: ["ethereum", "dash", "litecoin", "bitcoin", "dogecoin"],
   humanize: str => {
     const frags = str.split("_");
     for (i = 0; i < frags.length; i++) {
@@ -46,6 +48,8 @@ export default (GlobalHelpers = {
     navigationProps.dispatch(resetAction);
   },
   numberWithCommas: x => {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    split = x.toString().split(".");
+    split[0] = split[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return split.join(".");
   }
 });
