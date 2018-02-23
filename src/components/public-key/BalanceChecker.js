@@ -4,6 +4,7 @@ import { View } from "react-native";
 import { Button } from "react-native-elements";
 import styles from "../../styles/styles";
 import GlobalHelpers from "../../lib/GlobalHelpers";
+import CryptoButton from "../base/CryptoButton";
 import getBalance from "../../lib/getBalance";
 
 class BalanceChecker extends React.Component {
@@ -16,12 +17,17 @@ class BalanceChecker extends React.Component {
   }
 
   showBalance() {
-    this.setState({buttonText: "loading..."})
+    this.setState({ buttonText: "loading..." });
     getBalance(this.props.publicKey, this.props.currency)
       .then(res => {
-        this.setState({ buttonText: `${res.cryptoBalance} ${res.code.toUpperCase()}\n$${res.usdBalance}` });
+        this.setState({
+          buttonText: `${res.cryptoBalance} ${res.code.toUpperCase()}\n$${
+            res.usdBalance
+          }`
+        });
       })
       .catch(error => {
+        console.log(error);
         this.setState({ buttonText: "???" });
       });
   }
@@ -29,15 +35,10 @@ class BalanceChecker extends React.Component {
   render() {
     return (
       <View>
-          <Button
-            backgroundColor="white"
-            buttonStyle={{padding: 0, margin: 0}}
-            textStyle={styles.blackText}
-            fontSize={14}
-            title={this.state.buttonText}
-            onPress={() => this.showBalance()}
-            >
-          </Button>
+        <CryptoButton
+          title={this.state.buttonText}
+          onPress={() => this.showBalance()}
+        />
       </View>
     );
   }

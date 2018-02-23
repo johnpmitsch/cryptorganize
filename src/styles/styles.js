@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 
   cryptoListContainer: {
     paddingBottom: 20,
-    alignItems: "center",
+    alignItems: "center"
   },
 
   inlineContainer: {
@@ -62,17 +62,18 @@ const styles = StyleSheet.create({
   },
 
   publicKeyContainer: {
-    height: GlobalHelpers.windowHeight * 0.6,
+    height: GlobalHelpers.windowHeight * 0.65,
     width: GlobalHelpers.windowWidth * 0.95,
+    marginTop: 5,
     marginBottom: defaultSpacing
   },
 
   halfWidthContainer: {
-    width: GlobalHelpers.windowWidth * 0.5,
+    width: GlobalHelpers.windowWidth * 0.5
   },
 
   smallPadding: {
-    padding: GlobalHelpers.windowWidth * 0.03,
+    padding: GlobalHelpers.windowWidth * 0.03
   },
 
   buttonContainer: {
@@ -118,10 +119,6 @@ const styles = StyleSheet.create({
 
   submitKeyButton: {
     marginTop: smallSpacing
-  },
-
-  blackText: {
-    color: "blue"
   }
 });
 

@@ -105,17 +105,21 @@ class CryptoList extends React.Component {
           </View>
         </View>
         <View style={styles.cryptoListContainer}>
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-              <FlatList
-                data={this.state.visibleList}
-                keyExtractor={(item, index) => index}
-                ListFooterComponent={() => ( <View style={{ height: 300 }} /> )}
-                renderItem={({ item }) =>
-                  <PublicKey
-                    publicKey={item}
-                    />
-                }
-              />
+          <TouchableWithoutFeedback
+            onPress={Keyboard.dismiss}
+            accessible={false}
+          >
+            <FlatList
+              data={this.state.visibleList}
+              keyExtractor={(item, index) => index}
+              ListFooterComponent={() => <View style={{ height: 300 }} />}
+              renderItem={({ item }) => (
+                <PublicKey
+                  publicKey={item}
+                  navigation={this.props.navigation}
+                />
+              )}
+            />
           </TouchableWithoutFeedback>
         </View>
         <MessageBarAlert ref="alert" />
