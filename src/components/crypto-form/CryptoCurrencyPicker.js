@@ -1,8 +1,8 @@
 import React from "react";
 import { Image, View, Picker, Platform, Keyboard } from "react-native";
 import { Button } from "react-native-elements";
-import CryptoIcons from "../lib/CryptoIcons";
-import styles from "../styles/styles";
+import CryptoIcons from "../../lib/CryptoIcons";
+import styles from "../../styles/styles";
 
 class CryptoCurrencyPicker extends React.Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class CryptoCurrencyPicker extends React.Component {
   render() {
     return (
       <View>
-        {this.state.ios &&
+        {this.state.ios && (
           <Button
             iconRight
             title="Currency"
@@ -41,24 +41,26 @@ class CryptoCurrencyPicker extends React.Component {
             containerViewStyle={styles.currencyButtonContainer}
             iconRight={this.getIcon()}
             onPress={this.togglePicker}
-          />}
-        {this.state.showCurrencies &&
+          />
+        )}
+        {this.state.showCurrencies && (
           <Picker
             mode="dropdown"
             style={styles.currencyPicker}
             selectedValue={this.props.selectedCurrency}
             onValueChange={this.props.onValueChange}
           >
-            {Object.keys(CryptoIcons).map(key =>
+            {Object.keys(CryptoIcons).map(key => (
               <Picker.Item
                 label={GlobalHelpers.humanize(key)}
                 value={key}
                 key={key}
               />
-            )}
-          </Picker>}
+            ))}
+          </Picker>
+        )}
 
-        {this.state.currency !== "" &&
+        {this.state.currency !== "" && (
           <View style={styles.centeredContainer}>
             <Image
               style={styles.currencyIconLarge}
@@ -67,7 +69,8 @@ class CryptoCurrencyPicker extends React.Component {
               }
               resizeMode="contain"
             />
-          </View>}
+          </View>
+        )}
       </View>
     );
   }

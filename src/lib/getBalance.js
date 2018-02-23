@@ -8,6 +8,23 @@ const currencyAbbreviation = {
   dogecoin: "doge"
 };
 
+const decimalPlaces = num => {
+  numberOfDigits = num.toFixed().toString().length;
+  // return less decimal places the larger the value
+  switch (true) {
+    case numberOfDigits <= 1:
+      return 7;
+    case numberOfDigits <= 2:
+      return 5;
+    case numberOfDigits <= 3:
+      return 4;
+    case numberOfDigits <= 4:
+      return 3;
+    default:
+      return 2;
+  }
+};
+
 const conversionToWholeUnit = currency => {
   // coinmarketcap returns smaller denominations,
   // this returns the multiplier to convert to a whole unit.
@@ -37,16 +54,25 @@ const convertToUSD = (coinBalance, currency) => {
 
 const getBalance = (publicKey, currency) => {
   return new Promise((resolve, reject) => {
-    const explorer = `https://api.blockcypher.com/v1/${currencyAbbreviation[
-      currency
-    ]}/main/addrs/${publicKey}`;
+    const explorer = `https://api.blockcypher.com/v1/${
+      currencyAbbreviation[currency]
+    }/main/addrs/${publicKey}`;
     axios
       .get(explorer)
       .then(response => {
-        const btc_balance = response.data.balance;
-        convertToUSD(btc_balance, currency)
-          .then(usd_balance => {
-            resolve(GlobalHelpers.numberWithCommas(usd_balance.toFixed(2)));
+        const cryptoBalance = response.data.balance;
+        convertToUSD(cryptoBalance, currency)
+          .then(usdBalance => {
+            const conversion = conversionToWholeUnit(currency);
+            const convertedCryptoBalance = cryptoBalance * conversion;
+            const decimals = decimalPlaces(convertedCryptoBalance);
+            resolve({
+              usdBalance: GlobalHelpers.numberWithCommas(usdBalance.toFixed(2)),
+              cryptoBalance: GlobalHelpers.numberWithCommas(
+                convertedCryptoBalance.toFixed(decimals)
+              ),
+              code: currencyAbbreviation[currency]
+            });
           })
           .catch(error => {
             reject(error);

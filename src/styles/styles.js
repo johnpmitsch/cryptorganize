@@ -18,13 +18,13 @@ const styles = StyleSheet.create({
   },
 
   cryptoIcon: {
-    width: 25,
-    height: 25,
+    width: 50,
+    height: 50,
     marginRight: 5
   },
 
   exploreButton: {
-    marginTop: defaultSpacing,
+    marginTop: smallSpacing,
     marginBottom: smallSpacing
   },
 
@@ -49,6 +49,11 @@ const styles = StyleSheet.create({
     flex: 1
   },
 
+  cryptoListContainer: {
+    paddingBottom: 20,
+    alignItems: "center"
+  },
+
   inlineContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -57,10 +62,18 @@ const styles = StyleSheet.create({
   },
 
   publicKeyContainer: {
-    flex: 1,
-    backgroundColor: backgroundColor,
-    alignItems: "center",
-    justifyContent: "center"
+    height: GlobalHelpers.windowHeight * 0.65,
+    width: GlobalHelpers.windowWidth * 0.95,
+    marginTop: 5,
+    marginBottom: defaultSpacing
+  },
+
+  halfWidthContainer: {
+    width: GlobalHelpers.windowWidth * 0.5
+  },
+
+  smallPadding: {
+    padding: GlobalHelpers.windowWidth * 0.03
   },
 
   buttonContainer: {

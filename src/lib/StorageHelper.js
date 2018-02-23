@@ -48,7 +48,6 @@ export const addPublicKey = key => {
       // not requiring tld because .co (used in nanode.co) is not considered
       // valid by the validator package. https://github.com/chriso/validator.js/issues/791
       const validatorOptions = { require_tld: false };
-      console.log(key.explorerUrl);
       if (!validator.isURL(key.explorerUrl, validatorOptions))
         return reject("URL is not valid");
     }
