@@ -113,12 +113,11 @@ class CryptoList extends React.Component {
               data={this.state.visibleList}
               keyExtractor={(item, index) => index}
               ListFooterComponent={() => <View style={{ height: 300 }} />}
-              renderItem={({ item }) => (
+              renderItem={({ item }) =>
                 <PublicKey
                   publicKey={item}
                   navigation={this.props.navigation}
-                />
-              )}
+                />}
             />
           </TouchableWithoutFeedback>
         </View>

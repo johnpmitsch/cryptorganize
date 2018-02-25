@@ -8,6 +8,7 @@ class CryptoButton extends React.Component {
   render() {
     const color = this.props.disabled ? "gray" : this.props.color || "blue";
     const icon = this.props.icon;
+    const buttonStyle = this.props.buttonStyle || styles.cryptoButton;
     if (icon) icon.color = color;
     return (
       <View>
@@ -16,7 +17,7 @@ class CryptoButton extends React.Component {
           disabled={this.props.disabled}
           containerViewStyle={this.props.containerViewStyle}
           containerStyle={{ marginTop: 10 }}
-          buttonStyle={{ padding: 0, margin: 0 }}
+          buttonStyle={[buttonStyle, { borderColor: color }]}
           textStyle={{ color: color }}
           icon={icon}
           title={this.props.title}

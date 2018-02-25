@@ -11,7 +11,8 @@ class BalanceChecker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      buttonText: "Show Balance"
+      buttonText: "Show Balance",
+      balanceShowing: false
     };
     this.showBalance = this.showBalance.bind(this);
   }
@@ -21,9 +22,8 @@ class BalanceChecker extends React.Component {
     getBalance(this.props.publicKey, this.props.currency)
       .then(res => {
         this.setState({
-          buttonText: `${res.cryptoBalance} ${res.code.toUpperCase()}\n$${
-            res.usdBalance
-          }`
+          buttonText: `${res.cryptoBalance} ${res.code.toUpperCase()}\n$${res.usdBalance}`,
+          balanceShowing: true
         });
       })
       .catch(error => {
@@ -33,10 +33,14 @@ class BalanceChecker extends React.Component {
   }
 
   render() {
+    // override button style when balance is showing to remove
+    // button borders
+    const buttonStyle = this.state.balanceShowing ? {} : null;
     return (
       <View>
         <CryptoButton
           title={this.state.buttonText}
+          buttonStyle={buttonStyle}
           onPress={() => this.showBalance()}
         />
       </View>

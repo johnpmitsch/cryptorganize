@@ -17,8 +17,7 @@ class EditButton extends React.Component {
               publicKey: publicKey.publicKey,
               currency: publicKey.currency,
               explorerUrl: publicKey.explorerUrl
-            })
-          }
+            })}
         />
       </View>
     );

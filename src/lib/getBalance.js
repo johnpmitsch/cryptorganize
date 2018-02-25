@@ -54,9 +54,9 @@ const convertToUSD = (coinBalance, currency) => {
 
 const getBalance = (publicKey, currency) => {
   return new Promise((resolve, reject) => {
-    const explorer = `https://api.blockcypher.com/v1/${
-      currencyAbbreviation[currency]
-    }/main/addrs/${publicKey}`;
+    const explorer = `https://api.blockcypher.com/v1/${currencyAbbreviation[
+      currency
+    ]}/main/addrs/${publicKey}`;
     axios
       .get(explorer)
       .then(response => {

@@ -20,7 +20,9 @@ class PublicKey extends React.Component {
     const publicKey = this.props.publicKey;
     return (
       <View style={styles.publicKeyContainer}>
-        <Text h3>{publicKey.name}</Text>
+        <Text h3>
+          {publicKey.name}
+        </Text>
         <View style={styles.inlineContainer}>
           <View style={[styles.halfWidthContainer, styles.smallPadding]}>
             <Image
@@ -31,21 +33,20 @@ class PublicKey extends React.Component {
           </View>
           <View style={styles.halfWidthContainer}>
             {publicKey.currency != "other" &&
-              GlobalHelpers.supportedCurrencies.includes(
-                publicKey.currency
-              ) && (
-                <BalanceChecker
-                  currency={publicKey.currency}
-                  publicKey={publicKey.publicKey}
-                />
-              )}
+              GlobalHelpers.supportedCurrencies.includes(publicKey.currency) &&
+              <BalanceChecker
+                currency={publicKey.currency}
+                publicKey={publicKey.publicKey}
+              />}
           </View>
         </View>
-        <View style={styles.centeredContainer}>
+        <View style={[styles.centeredContainer, styles.smallSpacing]}>
           <QRCode
             size={GlobalHelpers.windowWidth * 0.5}
             value={publicKey.publicKey}
           />
+        </View>
+        <View style={styles.centeredContainer}>
           <BlockChainExplorer explorerUrl={publicKey.explorerUrl} />
         </View>
         <View style={styles.inlineContainer}>

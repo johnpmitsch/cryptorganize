@@ -10,7 +10,9 @@ class CryptoFormInput extends React.Component {
   render() {
     return (
       <View>
-        <FormLabel>{this.props.label}</FormLabel>
+        <FormLabel>
+          {this.props.label}
+        </FormLabel>
         <FormInput
           placeholder={this.props.placeholder}
           autoCapitalize="none"

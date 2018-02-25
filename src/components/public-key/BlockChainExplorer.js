@@ -13,7 +13,7 @@ class BlockChainExplorer extends React.Component {
         <CryptoButton
           icon={{ name: "binoculars", type: "font-awesome" }}
           title="Explore"
-          containerViewStyle={styles.exploreButton}
+          containerViewStyle={styles.smallSpacing}
           disabled={!this.props.explorerUrl}
           onPress={() => Linking.openURL(this.props.explorerUrl)}
         />

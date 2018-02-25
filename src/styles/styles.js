@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     marginRight: 5
   },
 
-  exploreButton: {
+  smallSpacing: {
     marginTop: smallSpacing,
     marginBottom: smallSpacing
   },
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
 
   publicKeyContainer: {
-    height: GlobalHelpers.windowHeight * 0.65,
+    height: GlobalHelpers.windowHeight * 0.7,
     width: GlobalHelpers.windowWidth * 0.95,
     marginTop: 5,
     marginBottom: defaultSpacing
@@ -119,6 +119,11 @@ const styles = StyleSheet.create({
 
   submitKeyButton: {
     marginTop: smallSpacing
+  },
+
+  cryptoButton: {
+    borderWidth: 1,
+    borderRadius: 10
   }
 });
 

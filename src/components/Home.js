@@ -1,6 +1,6 @@
 import React from "react";
 import { StatusBar, View, Keyboard } from "react-native";
-import { AppLoading, Asset, Font } from 'expo';
+import { AppLoading, Asset, Font } from "expo";
 import CryptoList from "./CryptoList";
 import styles from "../styles/styles";
 import GlobalHelpers from "../lib/GlobalHelpers";
@@ -14,7 +14,7 @@ export default class Home extends React.Component {
   };
 
   state = {
-    isLoadingComplete: false,
+    isLoadingComplete: false
   };
 
   _loadResourcesAsync = async () => {

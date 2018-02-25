@@ -155,14 +155,13 @@ class CryptoForm extends React.Component {
             }}
           />
 
-          {this.state.currency === "other" && (
+          {this.state.currency === "other" &&
             <ExplorerUrl
               value={this.state.explorerUrl}
               onChangeText={text => {
                 this.setState({ explorerUrl: text });
               }}
-            />
-          )}
+            />}
 
           <Button
             title="Submit"
