@@ -7,14 +7,28 @@ import GlobalHelpers from "../../lib/GlobalHelpers";
 import CryptoButton from "../base/CryptoButton";
 import getBalance from "../../lib/getBalance";
 
+const balanceButtonText = "Show Balance"
+
 class BalanceChecker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      buttonText: "Show Balance",
+      buttonText: balanceButtonText,
       balanceShowing: false
     };
     this.showBalance = this.showBalance.bind(this);
+    this.handleBalance = this.handleBalance.bind(this);
+  }
+
+  handleBalance() {
+    if (this.state.buttonText === balanceButtonText) {
+      this.showBalance();
+    } else {
+      this.setState({
+        buttonText: balanceButtonText,
+        balanceShowing: false
+      });
+    }
   }
 
   showBalance() {
@@ -41,7 +55,7 @@ class BalanceChecker extends React.Component {
         <CryptoButton
           title={this.state.buttonText}
           buttonStyle={buttonStyle}
-          onPress={() => this.showBalance()}
+          onPress={() => this.handleBalance()}
         />
       </View>
     );

@@ -19,9 +19,11 @@ const decimalPlaces = num => {
     case numberOfDigits <= 3:
       return 4;
     case numberOfDigits <= 4:
-      return 3;
-    default:
       return 2;
+    case numberOfDigits <= 5:
+      return 1;
+    default:
+      return 0;
   }
 };
 
