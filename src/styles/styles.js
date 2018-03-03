@@ -124,6 +124,18 @@ const styles = StyleSheet.create({
   cryptoButton: {
     borderWidth: 1,
     borderRadius: 10
+  },
+
+  messageContainer: {
+    margin: 0,
+    paddingTop: 3,
+    paddingBottom: 3,
+    backgroundColor: "green",
+  },
+
+  messageText: {
+    textAlign: "center",
+    color: "white"
   }
 });
 

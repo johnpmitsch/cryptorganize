@@ -1,4 +1,6 @@
 import { NavigationActions } from "react-navigation";
+import { addMessage, removeMessage } from "../actions/messageActions.js";
+
 const Dimensions = require("Dimensions");
 const { width, height } = Dimensions.get("window");
 
@@ -51,5 +53,9 @@ export default (GlobalHelpers = {
     split = x.toString().split(".");
     split[0] = split[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return split.join(".");
+  },
+  displayMessage(dispatchProp, message, seconds) {
+    dispatchProp(addMessage(message));
+    setTimeout(() => { dispatchProp(removeMessage()) }, seconds)
   }
 });

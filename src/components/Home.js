@@ -2,6 +2,7 @@ import React from "react";
 import { StatusBar, View, Keyboard } from "react-native";
 import { AppLoading, Asset, Font } from "expo";
 import CryptoList from "./CryptoList";
+import NotificationBar from "./base/NotificationBar";
 import styles from "../styles/styles";
 import GlobalHelpers from "../lib/GlobalHelpers";
 
@@ -45,6 +46,7 @@ export default class Home extends React.Component {
       return (
         <View style={styles.basicContainer}>
           <StatusBar barStyle="light-content" backgroundColor="black" />
+          <NotificationBar />
           <CryptoList navigation={this.props.navigation} />
         </View>
       );
