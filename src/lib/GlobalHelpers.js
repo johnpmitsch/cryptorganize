@@ -56,6 +56,8 @@ export default (GlobalHelpers = {
   },
   displayMessage(dispatchProp, message, seconds) {
     dispatchProp(addMessage(message));
-    setTimeout(() => { dispatchProp(removeMessage()) }, seconds)
+    setTimeout(() => {
+      dispatchProp(removeMessage());
+    }, seconds);
   }
 });

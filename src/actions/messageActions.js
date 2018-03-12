@@ -6,7 +6,7 @@ export function addMessage(message) {
     payload: {
       message: message
     }
-  }
+  };
 }
 
 export function removeMessage() {
@@ -15,5 +15,5 @@ export function removeMessage() {
     payload: {
       message: null
     }
-  }
+  };
 }

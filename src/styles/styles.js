@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     margin: 0,
     paddingTop: 3,
     paddingBottom: 3,
-    backgroundColor: "green",
+    backgroundColor: "green"
   },
 
   messageText: {

@@ -1,12 +1,12 @@
 import React from "react";
 import { Clipboard, View } from "react-native";
 import CryptoButton from "../base/CryptoButton";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import styles from "../../styles/styles";
 import { addMessage, removeMessage } from "../../actions/messageActions.js";
 import GlobalHelpers from "../../lib/GlobalHelpers";
 
-@connect((store) => {
+@connect(store => {
   return {};
 })
 class CopyButton extends React.Component {
